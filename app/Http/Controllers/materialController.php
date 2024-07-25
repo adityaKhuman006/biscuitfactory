@@ -14,14 +14,16 @@ class materialController extends Controller
 
     public function create(Request $request)
     {
-        $validatedData = $request->validate([
-            'item_name' => 'required',
-            'recipie_weight' => 'required|numeric',
-            'umd' => 'required',
-        ]);
-        
-        material::create($validatedData);        
+        $categoryData = $request->input('category-group');
 
+        foreach ($categoryData as $data) {
+            material::create([
+                "item_name" => $data['item_name'],
+                "recipie_weight" => $data['recipie_weight'],
+                "umd" => $data['umd']
+            ]);
+        }
+    
         return redirect()->route('index');
     }
 }

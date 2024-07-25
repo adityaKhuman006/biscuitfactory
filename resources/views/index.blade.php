@@ -8,7 +8,7 @@
                 <div class="card-body">
                   <h4 class="card-title">Add </h4>
 
-                  <form class="form-sample" method="POST" action="{{route ('create')}}">
+                  <form class="form-sample" method="POST" action="{{route('create')}}">
                     @csrf
                     <div class="repeater">
                       <div data-repeater-list="category-group">
@@ -19,7 +19,7 @@
                                 <div class="form-group">
                                   <label>Item Name</label>
                                   <input type="text" name="item_name" class="form-control form-control-sm border-black"
-                                    placeholder="Item Name" aria-label="Username">
+                                    placeholder="Item Name">
                                 </div>
                               </div>
                             </div>
@@ -28,7 +28,7 @@
                                 <div class="form-group">
                                   <label>Recipie Weight</label>
                                   <input type="number" name="recipie_weight" class="form-control form-control-sm border-black"
-                                    placeholder="Recipie Weight" aria-label="Username">
+                                    placeholder="Recipie Weight">
                                 </div>
                               </div>
                             </div>
@@ -37,7 +37,7 @@
                                 <div class="form-group">
                                   <label>UDM</label>
                                   <input type="text" name="umd" class="form-control form-control-sm border-black" placeholder="UDM"
-                                    aria-label="Username">
+                                  >
                                 </div>
                               </div>
                             </div>
