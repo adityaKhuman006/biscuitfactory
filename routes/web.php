@@ -7,3 +7,5 @@ use Illuminate\Support\Facades\Route;
 Route::any('/', [materialController::class, 'index'])->name('index');
 
 Route::post('/create', [materialController::class, 'create'])->name('create');
+
+Route::get('/emp', [materialController::class, 'emp'])->name('emp');

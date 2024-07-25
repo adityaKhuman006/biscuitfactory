@@ -26,4 +26,8 @@ class materialController extends Controller
     
         return redirect()->route('index');
     }
+
+    function emp(Request $request){
+        return view('emp');
+    }
 }
