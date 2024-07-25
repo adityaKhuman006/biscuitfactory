@@ -17,13 +17,15 @@ class materialController extends Controller
         $categoryData = $request->input('category-group');
 
         foreach ($categoryData as $data) {
-            material::create([
+            Material::create([
                 "item_name" => $data['item_name'],
                 "recipie_weight" => $data['recipie_weight'],
                 "umd" => $data['umd']
             ]);
         }
     
-        return redirect()->route('index');
+        $materials = Material::all();
+    
+        return view('index', compact('materials'));
     }
 }
