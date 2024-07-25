@@ -3,9 +3,9 @@
 use App\Http\Controllers\materialController;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/', function () {
-//     return view('index');
-// });
+Route::get('/', function () {
+    return view('indexx');
+});
 
 Route::any('/', [materialController::class, 'index'])->name('index');
 
