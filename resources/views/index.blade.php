@@ -7,7 +7,9 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Add </h4>
-                  <form class="form-sample">
+
+                  <form class="form-sample" method="POST" action="{{route ('create')}}">
+                    @csrf
                     <div class="repeater">
                       <div data-repeater-list="category-group">
                         <div id="show_item">
@@ -16,7 +18,7 @@
                               <div class="form-group">
                                 <div class="form-group">
                                   <label>Item Name</label>
-                                  <input type="text" class="form-control form-control-sm border-black"
+                                  <input type="text" name="item_name" class="form-control form-control-sm border-black"
                                     placeholder="Item Name" aria-label="Username">
                                 </div>
                               </div>
@@ -25,7 +27,7 @@
                               <div class="form-group">
                                 <div class="form-group">
                                   <label>Recipie Weight</label>
-                                  <input type="number" class="form-control form-control-sm border-black"
+                                  <input type="number" name="recipie_weight" class="form-control form-control-sm border-black"
                                     placeholder="Recipie Weight" aria-label="Username">
                                 </div>
                               </div>
@@ -34,7 +36,7 @@
                               <div class="form-group">
                                 <div class="form-group">
                                   <label>UDM</label>
-                                  <input type="text" class="form-control form-control-sm border-black" placeholder="UDM"
+                                  <input type="text" name="umd" class="form-control form-control-sm border-black" placeholder="UDM"
                                     aria-label="Username">
                                 </div>
                               </div>
@@ -55,10 +57,15 @@
                         </div>
                       </div>
                       <div class="text-end">
-                        <button data-repeater-create type="button" class="btn btn-primary add-item"
+                        <button data-repeater-create type="button" class="btn btn-success add-item"
                           style="margin-top: 15px;">+</button>
                       </div>
                     </div>
+                    
+                    <div class="d-flex justify-content-center">
+                      <button class="btn btn-primary" type="submit">Submit</button>
+                    </div>
+
                   </form>
                 </div>
               </div>
