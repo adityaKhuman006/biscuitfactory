@@ -8,7 +8,11 @@ use Illuminate\Http\Request;
 class materialController extends Controller
 {
 
-    function index(Request $request){
+    function index(Request $request)
+    {
+        // $materials = Material::all();
+        // return view('index', compact('materials'));
+
         return view('index');
     }
 
@@ -23,13 +27,27 @@ class materialController extends Controller
                 "umd" => $data['umd']
             ]);
         }
-    
+
+        // return redirect()->route('index')
         $materials = Material::all();
-    
         return view('index', compact('materials'));
     }
 
-    function emp(Request $request){
-        return view('emp');
+    function emp(Request $request)
+    {
+        $materials = Material::all();
+        return view('emp',compact('materials'));
+    }
+
+    function choose(Request $request)
+    {
+        $materials = Material::all();
+        return view('choose',compact('materials'));
+    }
+
+    function report(Request $request)
+    {
+        $materials = Material::all();
+        return view('report',compact('materials'));
     }
 }
