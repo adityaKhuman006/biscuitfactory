@@ -28,4 +28,22 @@ class materialController extends Controller
         return redirect()->route('index');
     
     }
+
+    function emp(Request $request)
+    {
+        $materials = Material::all();
+        return view('emp',compact('materials'));
+    }
+
+    function choose(Request $request)
+    {
+        $materials = Material::all();
+        return view('choose',compact('materials'));
+    }
+
+    function report(Request $request)
+    {
+        $materials = Material::all();
+        return view('report',compact('materials'));
+    }
 }
