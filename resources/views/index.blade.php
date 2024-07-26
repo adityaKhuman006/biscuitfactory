@@ -63,7 +63,7 @@
                                                 <div class="form-group">
                                                     <div class="form-group">
                                                         <label>Item Name</label>
-                                                        <input type="text" name="item_name"
+                                                        <input type="text" name="item_name" required
                                                             class="form-control form-control-sm border-black"
                                                             placeholder="Item Name">
                                                     </div>
@@ -73,7 +73,7 @@
                                                 <div class="form-group">
                                                     <div class="form-group">
                                                         <label>Recipie Weight</label>
-                                                        <input type="number" name="recipie_weight"
+                                                        <input type="number" name="recipie_weight" required
                                                             class="form-control form-control-sm border-black"
                                                             placeholder="Recipie Weight">
                                                     </div>
@@ -83,7 +83,7 @@
                                                 <div class="form-group">
                                                     <div class="form-group">
                                                         <label>UDM</label>
-                                                        <input type="text" name="umd"
+                                                        <input type="text" name="umd" required
                                                             class="form-control form-control-sm border-black"
                                                             placeholder="UDM">
                                                     </div>
