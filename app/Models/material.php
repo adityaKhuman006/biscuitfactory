@@ -12,5 +12,9 @@ class Material extends Model
     protected $table = 'materials';
 
     // Fillable attributes
-    protected $fillable = ['item_name', 'recipie_weight', 'umd'];
+    protected $fillable = [
+        'item_name',
+         'recipie_weight',
+          'umd'
+        ];
 }
