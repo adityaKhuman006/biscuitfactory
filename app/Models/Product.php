@@ -5,16 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Material extends Model
+class Product extends Model
 {
     use HasFactory;
 
-    protected $table = 'materials';
+    protected $table = "products";
 
-    // Fillable attributes
     protected $fillable = [
-        'item_name',
-         'recipie_weight',
-          'umd'
-        ];
+        "product_name",
+        "batch_size",
+        "batch_required",
+    ];
 }
