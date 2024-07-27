@@ -17,6 +17,13 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="assets/images/favicon.ico" />
+  <link rel="stylesheet"
+    href="    https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.1.2/css/dataTables.bootstrap5.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.2/css/responsive.bootstrap5.css">
+  <!-- Option 1: Include in HTML -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
 </head>
 
 <body>
@@ -24,11 +31,11 @@
   <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
     <div class="navbar-brand-wrapper d-flex justify-content-center">
       <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
-        <a class="navbar-brand brand-logo" href="index.html"><img src="../../../assets/images/logo.svg"
+        <a class="navbar-brand brand-logo" href="index.html"><img src="../../../assets/images/logo.ddddsvg"
             alt="logo" /></a>
-        <a class="navbar-brand brand-logo-white" href="index.html"><img src="../../../assets/images/logo-white.svg"
+        <a class="navbar-brand brand-logo-white" href="index.html"><img src="../../../assets/images/logo-whiddddte.svg"
             alt="logo" /></a>
-        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="../../../assets/images/logo-mini.svg"
+        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="../../../assets/images/logo-mini.ddddsvg"
             alt="logo" /></a>
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
           <span class="mdi mdi-sort-variant"></span>
@@ -179,38 +186,39 @@
     <!-- partial:partials/_sidebar.html -->
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
       <ul class="nav">
-        <li class="nav-item">
+        <li class="nav-item {{Route::currentRouteName()  == 'index'? 'active' :''}}">
           <a class="nav-link" href="{{route('index')}}">
             <i class="mdi mdi-home menu-icon"></i>
             <span class="menu-title">Dashboard</span>
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item {{Route::currentRouteName()  == 'emp'? 'active' :''}}">
           <a class="nav-link" href="{{route('emp')}}">
             <i class="mdi mdi-home menu-icon"></i>
-            <span class="menu-title">emp</span>
+            <span class="menu-title">Production</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{route('choose')}}">
+        <li class="nav-item {{Route::currentRouteName()  == 'rep '? 'active' :''}}">
+          <a class="nav-link" href="{{route('rep')}}">
             <i class="mdi mdi-home menu-icon"></i>
-            <span class="menu-title">choose</span>
+            <span class="menu-title">Report</span>
           </a>
         </li>
         <!-- <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="collapse" href="{{route('emp')}}" aria-expanded="false" aria-controls="ui-basic">
+          <a class="nav-link" data-bs-toggle="collapse" href="{{route('rep')}}" aria-expanded="false"
+            aria-controls="ui-basic">
             <i class="mdi mdi-circle-outline menu-icon"></i>
-            <span class="menu-title">UI Elements</span> -->
-            <!-- <i class="menu-arrow"></i> -->
-          </a>
-          <!-- <div class="collapse" id="ui-basic">
+            <span class="menu-title">UI Elements</span>
+            <i class="menu-arrow"></i>
+          </a> -->
+        <!-- <div class="collapse" id="ui-basic">
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
               <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
               <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
             </ul>
           </div> -->
-        </li>
+        <!-- </li> -->
         <!-- <li class="nav-item">
           <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false"
             aria-controls="form-elements">

@@ -111,7 +111,7 @@
 <div class="main-panel ">
     <div class="content-wrapper">
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-sm-6 col-xl-2 col-6 ">
                 <div class="form-group">
                     <label for="exampleFormControlSelect3">Product</label>
                     <select class="form-select form-control-sm border-dark" id="exampleFormControlSelect3">
@@ -121,43 +121,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <div class="form-group">
-                        <label>Batch Required</label>
-                        <input type="number" name="recipie_weight" required value="50"
-                            class="form-control form-control-sm border-black" placeholder="Recipie Weight">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <div class="form-group">
-                        <label>Batch No</label>
-                        <input type="number" name="Batch No" required value="0"
-                            class="form-control form-control-sm border-black" placeholder="Batch No">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <div class="form-group">
-                        <label>Date</label>
-                        <input type="date" name="Batch No" required value="0"
-                            class="form-control form-control-sm border-black" placeholder="Date">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <div class="form-group">
-                        <label>Time</label>
-                        <input type="time" name="Batch No" required value="0"
-                            class="form-control form-control-sm border-black" placeholder="Time">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2">
+            <div class="col-sm-6 col-xl-2 col-6 ">
                 <div class="form-group">
                     <label for="exampleFormControlSelect3">Batch Size</label>
                     <select class="form-select form-control-sm border-dark" id="exampleFormControlSelect3">
@@ -167,9 +131,66 @@
                     </select>
                 </div>
             </div>
+            <!-- <div class="col-sm-6 col-xl-2 col-6 ">
+                <div class="form-group">
+                    <div class="form-group">
+                        <label>Batch No</label>
+                        <input type="number" name="Batch No" required value="0"
+                            class="form-control form-control-sm border-black" placeholder="Batch No">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xl-2 col-6 ">
+                <div class="form-group">
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" name="Batch No" required value="0"
+                            class="form-control form-control-sm border-black" placeholder="Date">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xl-2 col-6 ">
+                <div class="form-group">
+                    <div class="form-group">
+                        <label>Time</label>
+                        <input type="time" name="Batch No" required value="0"
+                            class="form-control form-control-sm border-black" placeholder="Time">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xl-2 col-6 ">
+                <div class="form-group">
+                    <label>Batch Required</label>
+                    <input type="number" name="recipie_weight" required value="50"
+                        class="form-control form-control-sm border-black" placeholder="Recipie Weight">
+                </div>
+            </div> -->
+        </div>
+        <div class="card">
+            <div class="card-body p-2">
+                <div class="table-responsive"></div>
+                <table class="table border-none">
+                    <thead>
+                        <tr>
+                            <th class="border-dark">Batch No</th>
+                            <th class="border-dark">Batch Required</th>
+                            <th class="border-dark">Date</th>
+                            <th class="border-dark">Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>10</td>
+                            <td>150</td>
+                            <td>12 May 2017</td>
+                            <td>2.20.200</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="row">
-            <div class="col-lg-12 grid-margin stretch-card">
+            <div class="col-lg-12 pt-2 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
@@ -323,7 +344,7 @@
         </div>
     </div>
 </div> -->
-    @include('footer')
+    <!-- @include('footer') -->
 </div>
 </body>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

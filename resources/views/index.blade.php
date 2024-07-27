@@ -113,11 +113,10 @@
                           <div class="form-group">
                             <div class="form-group">
                               <br>
-                              <div class="text-end">
-                                <button data-repeater-delete type="button" class="btn btn-danger add-item"
-                                  style="margin-top: 15px;">-</button>
+                              <div class="text-center">
+                                <button data-repeater-delete type="button" class="btn w-25  btn-danger add-item"><i
+                                    class="mdi mdi-delete"></i></button>
                               </div>
-
                             </div>
                           </div>
                         </div>
@@ -126,10 +125,9 @@
                   </div>
                   <div class="text-end">
                     <button data-repeater-create type="button" class="btn btn-success add-item"
-                      style="margin-top: 15px;">+</button>
+                      style="margin-top: 15px;"><i class="mdi mdi-plus-circle"></i></button>
                   </div>
                 </div>
-
                 <div class="d-flex justify-content-center">
                   <button class="btn btn-primary" type="submit">Submit</button>
                 </div>

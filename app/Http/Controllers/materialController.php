@@ -45,9 +45,9 @@ class materialController extends Controller
         return view('choose',compact('materials'));
     }
 
-    function report(Request $request)
+    function rep(Request $request)
     {
         $materials = Material::all();
-        return view('report',compact('materials'));
+        return view('rep',compact('materials'));
     }
 }

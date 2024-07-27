@@ -12,4 +12,4 @@ Route::get('/emp', [materialController::class, 'emp'])->name('emp');
 
 Route::get('/choose', [materialController::class, 'choose'])->name('choose');
 
-Route::get('/report', [materialController::class, 'report'])->name('report');
+Route::get('/rep', [materialController::class, 'rep'])->name('rep');
