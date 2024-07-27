@@ -111,61 +111,28 @@
 <div class="main-panel ">
     <div class="content-wrapper">
         <div class="row">
-            <div class="col-sm-6 col-xl-2 col-6 ">
+            <div class="col-sm-6 col-xl-2 col-6">
                 <div class="form-group">
-                    <label for="exampleFormControlSelect3">Product</label>
-                    @foreach ($product as $item)
-                        <select class="form-select form-control-sm border-dark" id="exampleFormControlSelect3">
-                            <option disabled selected>selecte</option>
-                            <option>{{$item->product_name}}</option>
-                        </select>
-                    @endforeach
-                </div>
-            </div>
-            <div class="col-sm-6 col-xl-2 col-6 ">
-                <div class="form-group">
-                    <label for="exampleFormControlSelect3">Batch Size</label>
-                    <select class="form-select form-control-sm border-dark" id="exampleFormControlSelect3">
-                        <option>100</option>
-                        <option>150</option>
-                        <option>200</option>
+                    <label for="productSelect">Product</label>
+                    <select class="form-select form-control-sm border-dark" id="productSelect">
+                        <option disabled selected>Select Product</option>
+                        @foreach ($product as $item)
+                            <option value="{{ $item->id }}" data-batch-size="{{ $item->batch_size }}">
+                                {{ $item->product_name }}
+                            </option>
+                        @endforeach
                     </select>
                 </div>
             </div>
-            <!-- <div class="col-sm-6 col-xl-2 col-6 ">
+            <div class="col-sm-6 col-xl-2 col-6">
                 <div class="form-group">
-                    <div class="form-group">
-                        <label>Batch No</label>
-                        <input type="number" name="Batch No" required value="0"
-                            class="form-control form-control-sm border-black" placeholder="Batch No">
-                    </div>
+                    <label for="batchSizeSelect">Batch Size</label>
+                    <select class="form-select form-control-sm border-dark" id="batchSizeSelect">
+                        <option disabled selected>Select Batch Size</option>
+                        <!-- Batch sizes will be populated dynamically -->
+                    </select>
                 </div>
             </div>
-            <div class="col-sm-6 col-xl-2 col-6 ">
-                <div class="form-group">
-                    <div class="form-group">
-                        <label>Date</label>
-                        <input type="date" name="Batch No" required value="0"
-                            class="form-control form-control-sm border-black" placeholder="Date">
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-xl-2 col-6 ">
-                <div class="form-group">
-                    <div class="form-group">
-                        <label>Time</label>
-                        <input type="time" name="Batch No" required value="0"
-                            class="form-control form-control-sm border-black" placeholder="Time">
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-xl-2 col-6 ">
-                <div class="form-group">
-                    <label>Batch Required</label>
-                    <input type="number" name="recipie_weight" required value="50"
-                        class="form-control form-control-sm border-black" placeholder="Recipie Weight">
-                </div>
-            </div> -->
         </div>
         <div class="card">
             <div class="card-body p-2">
@@ -348,14 +315,36 @@
         </div>
     </div>
 </div> -->
-    <!-- @include('footer') -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const productSelect = document.getElementById('productSelect');
+        const batchSizeSelect = document.getElementById('batchSizeSelect');
+    
+        productSelect.addEventListener('change', function() {
+            // Clear the current batch size options
+            batchSizeSelect.innerHTML = '<option disabled selected>Select Batch Size</option>';
+            
+            // Get the selected product's batch size
+            const selectedOption = productSelect.options[productSelect.selectedIndex];
+            const batchSize = selectedOption.getAttribute('data-batch-size');
+    
+            if (batchSize) {
+                // Create a new option element for the batch size
+                const option = document.createElement('option');
+                option.value = batchSize;
+                option.textContent = batchSize;
+                batchSizeSelect.appendChild(option);
+    
+                // Optionally, select the new batch size if it matches any existing option
+                batchSizeSelect.value = batchSize;
+            }
+        });
+    });
+    </script>
+    
+@include('footer')
 </div>
 </body>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<!-- <script>
-    $('#myModal').on('shown.bs.modal', function() {
-        $('#myInput').trigger('focus')
-    })
-</script> -->
-
 </html>

@@ -50,27 +50,35 @@ class materialController extends Controller
             ]);
         }
 
-        // material create and update
 
         $data = $request->all();
-        $items = $data['category-group']; 
-        
-        if(isset($data['item_name']) && $data['item_name']){
-            foreach($data['item_name'] as $key => $itemName){
-                material::where('id',$data['material_id'][$key])->update([
-                    "item_name" => $data['item_name'][$key],
-                    "recipie_weight"=>$data['recipie_weight'][$key],
-                    "umd"=>$data['umd'][$key]
-                ]);        
-            }    
+        $items = $data['category-group'] ?? [];
+    
+        // Update existing materials
+        if (isset($data['item_name']) && $data['item_name']) {
+            foreach ($data['item_name'] as $key => $itemName) {
+                $materialId = $data['material_id'][$key] ?? null;
+    
+                if ($materialId && Material::where('id', $materialId)->exists()) {
+                    Material::where('id', $materialId)->update([
+                        "item_name" => $itemName,
+                        "recipie_weight" => $data['recipie_weight'][$key] ?? null,
+                        "umd" => $data['umd'][$key] ?? null
+                    ]);
+                }
+            }
         }
-
-        foreach($items as $item){
-            material::create([
-                "item_name" => $item['item_name'],
-                "recipie_weight"=>$item['recipie_weight'],
-                "umd"=>$item['umd']
-            ]);
+    
+        // Create new materials
+        foreach ($items as $item) {
+            // Ensure all required fields are present and not empty
+            if (!empty($item['item_name']) && !empty($item['recipie_weight']) && !empty($item['umd'])) {
+                Material::create([
+                    "item_name" => $item['item_name'],
+                    "recipie_weight" => $item['recipie_weight'],
+                    "umd" => $item['umd']
+                ]);
+            }
         }
         
 
