@@ -192,8 +192,8 @@
             <span class="menu-title">Dashboard</span>
           </a>
         </li>
-        <li class="nav-item {{Route::currentRouteName() == 'emp' ? 'active' : ''}}">
-          <a class="nav-link" href="{{route('emp')}}">
+        <li class="nav-item {{Route::currentRouteName() == 'production' ? 'active' : ''}}">
+          <a class="nav-link" href="{{route('production')}}">
             <i class="mdi mdi-home menu-icon"></i>
             <span class="menu-title">Production</span>
           </a>

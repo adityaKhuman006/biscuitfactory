@@ -53,22 +53,25 @@ class materialController extends Controller
 
         $data = $request->all();
         $items = $data['category-group'] ?? [];
-    
+
         // Update existing materials
         if (isset($data['item_name']) && $data['item_name']) {
             foreach ($data['item_name'] as $key => $itemName) {
                 $materialId = $data['material_id'][$key] ?? null;
-    
+                // $actualWeightKey = 'actual_weight'.$materialId;
+                // dd($actualWeightKey);
+                // die();
                 if ($materialId && Material::where('id', $materialId)->exists()) {
                     Material::where('id', $materialId)->update([
                         "item_name" => $itemName,
-                        "recipie_weight" => $data['recipie_weight'][$key] ?? null,
-                        "umd" => $data['umd'][$key] ?? null
+                        "recipie_weight" => $data['recipie_weight'][$key],
+                        "umd" => $data['umd'][$key],
+                        // "actual_weight" => $actualWeightKey
                     ]);
                 }
             }
         }
-    
+
         // Create new materials
         foreach ($items as $item) {
             // Ensure all required fields are present and not empty
@@ -76,7 +79,8 @@ class materialController extends Controller
                 Material::create([
                     "item_name" => $item['item_name'],
                     "recipie_weight" => $item['recipie_weight'],
-                    "umd" => $item['umd']
+                    "umd" => $item['umd'],
+                    // "actual_weight" => $item['actual_weight']
                 ]);
             }
         }
@@ -85,15 +89,28 @@ class materialController extends Controller
         return redirect()->route('index');
     }
 
-
-
-
-    function emp(Request $request)
+    function production(Request $request)
     {
         $materials = Material::all();
         $product = Product::all();
-        return view('emp', compact('materials', 'product'));
+        return view('production', compact('materials', 'product'));
     }
+
+
+    function productionAdd(Request $request)
+    {
+        // Retrieve all the input data
+        $data = $request->all();
+        foreach($data['prodect_id'] as $prodectId){
+            $actualWeightKey = 'actual_weight_'.$prodectId; 
+            Material::where('id',$prodectId)->update([
+                "actual_weight"=>$data[$actualWeightKey],
+            ]);
+        }
+
+        return redirect()->route('production');
+    }
+
 
     function choose(Request $request)
     {

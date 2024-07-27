@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('item_name')->nullable();
             $table->decimal('recipie_weight')->nullable();
             $table->string('umd')->nullable();
+            $table->string('actual_weight')->nullable();
             $table->timestamps();
         });
     }
