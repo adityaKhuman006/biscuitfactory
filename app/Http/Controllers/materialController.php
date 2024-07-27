@@ -80,7 +80,7 @@ class materialController extends Controller
                 ]);
             }
         }
-        
+
 
         return redirect()->route('index');
     }
@@ -104,6 +104,11 @@ class materialController extends Controller
     function rep(Request $request)
     {
         $materials = Material::all();
-        return view('rep',compact('materials'));
+        return view('rep', compact('materials'));
+    }
+    function view(Request $request)
+    {
+        $materials = Material::all();
+        return view('view', compact('materials'));
     }
 }

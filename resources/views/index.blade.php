@@ -166,7 +166,6 @@
                                                                 class="btn btn-danger add-item"
                                                                 style="margin-top: 15px;">-</button>
                                                         </div>
-
                                                     </div>
                                                 </div>
                                             </div>
