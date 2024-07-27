@@ -114,11 +114,12 @@
             <div class="col-md-2">
                 <div class="form-group">
                     <label for="exampleFormControlSelect3">Product</label>
-                    <select class="form-select form-control-sm border-dark" id="exampleFormControlSelect3">
-                        <option>Parle-G</option>
-                        <option>Moneko</option>
-                        <option>Oreo</option>
-                    </select>
+                    @foreach ($product as $item)
+                        <select class="form-select form-control-sm border-dark" id="exampleFormControlSelect3">
+                            <option disabled selected>selecte</option>
+                            <option>{{$item->product_name}}</option>
+                        </select>
+                    @endforeach
                 </div>
             </div>
             <div class="col-md-2">
@@ -174,24 +175,27 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th class="border-dark">Item</th>
-                                        <th class="border-dark">Recipie Weight</th>
-                                        <th class="border-dark">UOM</th>
-                                        <th class="border-dark">Actual Weight</th>
-                                    </tr>
-                                </thead>
+                                <tr>
+                                    <th>NO.</th>
+                                    <th>Item</th>
+                                    <th>Recipie Weight</th>
+                                    <th>UOM</th>
+                                    <th>Actual Weight</th>
+                                </tr>
                                 <tbody>
-                                    <tr>
-                                        <td>meda</td>
-                                        <td>100</td>
-                                        <td>12 May 2017</td>
-                                        <td>
-                                            <input type="number" style="width: 100px;" name="recipie_weight" required
-                                                class="form-control form-control-sm border-black" placeholder="Weight">
-                                        </td>
-                                    </tr>
+                                    @foreach ($materials as $key => $item)
+                                        <tr>
+                                            <td>{{ $key + 1 }}</td>
+                                            <td>{{ $item->item_name }}</td>
+                                            <td>{{ $item->recipie_weight }}</td>
+                                            <td>{{ $item->umd }}</td>
+                                            <td>
+                                                <input type="number" style="width: 100px;" name="recipie_weight"
+                                                    required class="form-control form-control-sm border-primary"
+                                                    placeholder="Weight">
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -266,7 +270,7 @@
                         <h4 class="card-title">Add </h4>
                         @if (isset($materials))
                             @foreach ($materials as $material)
-                                <div data-repeater-list="category-group mt-5">
+<div data-repeater-list="category-group mt-5">
                                     <div id="show_item">
                                         <div class="row" data-repeater-item>
                                             <div class="col-md-3">
@@ -304,7 +308,7 @@
                                                 <div class="form-group">
                                                     <div class="form-group">
                                                         <label>Actual Weight</label>
-                                                        <input type="number" name="umd" 
+                                                        <input type="number" name="umd"
                                                             class="form-control form-control-sm border-black" placeholder="Actual Weight">
                                                     </div>
                                                 </div>
@@ -312,7 +316,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+@endforeach
                         @endif
                         <div class="text-center">
                         <button type="button" class="btn btn-success">Save</button>
@@ -328,9 +332,9 @@
 </body>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <!-- <script>
-        $('#myModal').on('shown.bs.modal', function () {
-            $('#myInput').trigger('focus')
-        })
-    </script> -->
+    $('#myModal').on('shown.bs.modal', function() {
+        $('#myInput').trigger('focus')
+    })
+</script> -->
 
 </html>

@@ -187,14 +187,14 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{route('emp')}}">
-            <i class="mdi mdi-home menu-icon"></i>
-            <span class="menu-title">emp</span>
+            <i class="mdi mdi-account-circle menu-icon"></i>
+            <span class="menu-title">Employe</span>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{route('choose')}}">
             <i class="mdi mdi-home menu-icon"></i>
-            <span class="menu-title">choose</span>
+            <span class="menu-title">Choose</span>
           </a>
         </li>
         <!-- <li class="nav-item">
