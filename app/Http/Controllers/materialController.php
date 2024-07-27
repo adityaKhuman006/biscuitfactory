@@ -53,26 +53,26 @@ class materialController extends Controller
         // material create and update
 
         $data = $request->all();
-        $items = $data['category-group']; 
-        
-        if(isset($data['item_name']) && $data['item_name']){
-            foreach($data['item_name'] as $key => $itemName){
-                material::where('id',$data['material_id'][$key])->update([
+        $items = $data['category-group'];
+
+        if (isset($data['item_name']) && $data['item_name']) {
+            foreach ($data['item_name'] as $key => $itemName) {
+                material::where('id', $data['material_id'][$key])->update([
                     "item_name" => $data['item_name'][$key],
-                    "recipie_weight"=>$data['recipie_weight'][$key],
-                    "umd"=>$data['umd'][$key]
-                ]);        
-            }    
+                    "recipie_weight" => $data['recipie_weight'][$key],
+                    "umd" => $data['umd'][$key]
+                ]);
+            }
         }
 
-        foreach($items as $item){
+        foreach ($items as $item) {
             material::create([
                 "item_name" => $item['item_name'],
-                "recipie_weight"=>$item['recipie_weight'],
-                "umd"=>$item['umd']
+                "recipie_weight" => $item['recipie_weight'],
+                "umd" => $item['umd']
             ]);
         }
-        
+
 
         return redirect()->route('index');
     }
@@ -96,6 +96,11 @@ class materialController extends Controller
     function rep(Request $request)
     {
         $materials = Material::all();
-        return view('rep',compact('materials'));
+        return view('rep', compact('materials'));
+    }
+    function view(Request $request)
+    {
+        $materials = Material::all();
+        return view('view', compact('materials'));
     }
 }

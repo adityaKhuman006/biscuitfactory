@@ -186,22 +186,28 @@
     <!-- partial:partials/_sidebar.html -->
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
       <ul class="nav">
-        <li class="nav-item {{Route::currentRouteName()  == 'index'? 'active' :''}}">
+        <li class="nav-item {{Route::currentRouteName() == 'index' ? 'active' : ''}}">
           <a class="nav-link" href="{{route('index')}}">
             <i class="mdi mdi-home menu-icon"></i>
             <span class="menu-title">Dashboard</span>
           </a>
         </li>
-        <li class="nav-item {{Route::currentRouteName()  == 'emp'? 'active' :''}}">
+        <li class="nav-item {{Route::currentRouteName() == 'emp' ? 'active' : ''}}">
           <a class="nav-link" href="{{route('emp')}}">
             <i class="mdi mdi-home menu-icon"></i>
             <span class="menu-title">Production</span>
           </a>
         </li>
-        <li class="nav-item {{Route::currentRouteName()  == 'rep '? 'active' :''}}">
+        <li class="nav-item {{Route::currentRouteName() == 'rep ' ? 'active' : ''}}">
           <a class="nav-link" href="{{route('rep')}}">
             <i class="mdi mdi-home menu-icon"></i>
             <span class="menu-title">Report</span>
+          </a>
+        </li>
+        <li class="nav-item {{Route::currentRouteName() == 'rep ' ? 'active' : ''}}">
+          <a class="nav-link" href="{{route('view')}}">
+            <i class="mdi mdi-home menu-icon"></i>
+            <span class="menu-title">View</span>
           </a>
         </li>
         <!-- <li class="nav-item">
