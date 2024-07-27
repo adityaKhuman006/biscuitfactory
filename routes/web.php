@@ -17,4 +17,5 @@ Route::get('/choose', [materialController::class, 'choose'])->name('choose');
 
 Route::get('/rep', [materialController::class, 'rep'])->name('rep');
 
+Route::get('/create', [materialController::class, 'create'])->name('create');
 Route::get('/view', [materialController::class, 'view'])->name('view');

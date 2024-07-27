@@ -14,6 +14,7 @@ class materialController extends Controller
         $materials = Material::all();
         $products = Product::all();
         return view('index', ['products' => $products], compact('materials'));
+        // return view('index');
     }
 
     public function productAdd(Request $request)
@@ -39,7 +40,7 @@ class materialController extends Controller
                 ]);
             } else {
                 // Product ID does not exist in the database
-                return redirect()->route('index')->with('error', 'Product not found.');
+                return redirect()->route('create')->with('error', 'Product not found.');
             }
         } else {
             // Add a new product
@@ -72,13 +73,8 @@ class materialController extends Controller
                 "umd" => $item['umd']
             ]);
         }
-
-
-        return redirect()->route('index');
+        return redirect()->route('create');
     }
-
-
-
 
     function emp(Request $request)
     {
@@ -98,9 +94,9 @@ class materialController extends Controller
         $materials = Material::all();
         return view('rep', compact('materials'));
     }
-    function view(Request $request)
+    function create(Request $request)
     {
         $materials = Material::all();
-        return view('view', compact('materials'));
+        return view('create', compact('materials'));
     }
 }
