@@ -204,12 +204,12 @@
             <span class="menu-title">Report</span>
           </a>
         </li>
-        <li class="nav-item {{Route::currentRouteName() == 'rep ' ? 'active' : ''}}">
+        <!-- <li class="nav-item {{Route::currentRouteName() == 'rep ' ? 'active' : ''}}">
           <a class="nav-link" href="{{route('view')}}">
             <i class="mdi mdi-home menu-icon"></i>
             <span class="menu-title">View</span>
           </a>
-        </li>
+        </li> -->
         <!-- <li class="nav-item">
           <a class="nav-link" data-bs-toggle="collapse" href="{{route('rep')}}" aria-expanded="false"
             aria-controls="ui-basic">
