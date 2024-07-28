@@ -14,9 +14,15 @@ Route::put('/update-products', [materialController::class, 'update'])->name('upd
 Route::get('/production', [materialController::class, 'production'])->name('production');
 Route::post('/production-add', [materialController::class, 'productionAdd'])->name('production.add');
 
-Route::get('/choose', [materialController::class, 'choose'])->name('choose');
-
-Route::get('/rep', [materialController::class, 'rep'])->name('rep');
 
 Route::get('/create', [materialController::class, 'create'])->name('create');
+Route::delete('/products/{id}', [materialController::class, 'deleteProduct'])->name('products.delete');
+
+// Route::get('/products-fatch', [materialController::class, 'index'])->name('products.fatch');
+Route::get('/product/edit/{id}', [materialController::class, 'edit'])->name('product.edit');
+Route::post('/product/update', [materialController::class, 'update'])->name('product.update');
+
+
+Route::get('/choose', [materialController::class, 'choose'])->name('choose');
+Route::get('/rep', [materialController::class, 'rep'])->name('rep');
 Route::get('/view', [materialController::class, 'view'])->name('view');

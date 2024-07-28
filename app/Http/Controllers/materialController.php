@@ -11,9 +11,9 @@ class materialController extends Controller
 
     function index(Request $request)
     {
-        $materials = Material::all();
+        // $materials = Material::all();
         $products = Product::all();
-        return view('index', ['products' => $products], compact('materials'));
+        return view('index', ['products' => $products]);
         // return view('index');
     }
 
@@ -28,65 +28,109 @@ class materialController extends Controller
         ];
         $validatedData = $request->validate($productRules);
 
-        if ($request->has('product_id') && $request->input('product_id')) {
-            $product = Product::find($request->input('product_id'));
+        $product = Product::create([
+            'product_name' => $request->input('product_name'),
+            'batch_size' => $request->input('batch_size'),
+            'batch_required' => $request->input('batch_required'),
+        ]);
 
-            if ($product) {
-                // Update the product
-                $product->update([
-                    'product_name' => $request->input('product_name'),
-                    'batch_size' => $request->input('batch_size'),
-                    'batch_required' => $request->input('batch_required'),
-                ]);
-            } else {
-                // Product ID does not exist in the database
-                return redirect()->route('create')->with('error', 'Product not found.');
-            }
-        } else {
-            // Add a new product
-            $product = Product::create([
-                'product_name' => $request->input('product_name'),
-                'batch_size' => $request->input('batch_size'),
-                'batch_required' => $request->input('batch_required'),
-            ]);
-        }
+        // Retrieve the product ID
+        $productId = $product->id;
 
-
+        // // Get the items from the request
         $data = $request->all();
         $items = $data['category-group'] ?? [];
 
-        // Update existing materials
-        if (isset($data['item_name']) && $data['item_name']) {
-            foreach ($data['item_name'] as $key => $itemName) {
-                $materialId = $data['material_id'][$key] ?? null;
-                // $actualWeightKey = 'actual_weight'.$materialId;
-                // dd($actualWeightKey);
-                // die();
-                if ($materialId && Material::where('id', $materialId)->exists()) {
-                    Material::where('id', $materialId)->update([
-                        "item_name" => $itemName,
-                        "recipie_weight" => $data['recipie_weight'][$key],
-                        "umd" => $data['umd'][$key],
-                        // "actual_weight" => $actualWeightKey
-                    ]);
-                }
+        foreach ($items as $item) {
+
+            if (!empty($item['item_name']) && !empty($item['recipie_weight']) && !empty($item['umd'])) {
+                Material::create([
+                    'product_id' => $productId,
+                    'item_name' => $item['item_name'],
+                    'recipie_weight' => $item['recipie_weight'],
+                    'umd' => $item['umd'],
+                ]);
             }
         }
 
-        // Create new materials
-        foreach ($items as $item) {
-            // Ensure all required fields are present and not empty
+        return redirect()->route('index');
+    }
+
+    public function deleteProduct($id)
+    {
+        $product = Product::findOrFail($id);
+        $product->delete();
+
+        return redirect()->route('index');
+    }
+
+    public function ProductFatch(Request $request)
+    {
+        $materials = Material::all();
+        $products = Product::all();
+        return view('products.fatch', ['products' => $products], compact('materials'));
+    }
+
+
+    public function edit($id)
+    {
+        $product = Product::findOrFail($id);
+        $materials = Material::where('product_id', $id)->get();
+        return view('product-edit', compact('product', 'materials'));
+    }
+
+    public function update(Request $request)
+    {
+        $productRules = [
+            'product_name' => 'required|string|max:255',
+            'batch_size' => 'required|numeric',
+            'batch_required' => 'required|numeric',
+            'product_id' => 'nullable|exists:products,id',
+        ];
+
+        $product = Product::find($request->input('product_id'));
+
+        $product->update([
+            'product_name' => $request->input('product_name'),
+            'batch_size' => $request->input('batch_size'),
+            'batch_required' => $request->input('batch_required'),
+        ]);
+
+        // Check if 'item_name' is set and is an array
+        // if (isset($data['item_name']) && $data['item_name']) {
+        //     dd($data['item_name']);
+        //     foreach ($data['item_name'] as $key => $itemName) {
+        //         $materialId = $data['material_id'][$key] ?? null;
+
+        //         if ($materialId && Material::where('id', $materialId)->exists()) {
+        //             Material::where('id', $materialId)->update([
+        //                 "item_name" => $itemName,
+        //                 "recipie_weight" => $data['recipie_weight'][$key] ?? null,
+        //                 "umd" => $data['umd'][$key] ?? null,
+        //             ]);
+        //         }
+        //     }
+        // }
+        // dd($data['item_name']);
+
+        $data = $request->input('item_name');
+        
+        // dd($data);
+        foreach ($data as $item) {
             if (!empty($item['item_name']) && !empty($item['recipie_weight']) && !empty($item['umd'])) {
                 Material::create([
                     "item_name" => $item['item_name'],
                     "recipie_weight" => $item['recipie_weight'],
                     "umd" => $item['umd'],
-                    // "actual_weight" => $item['actual_weight']
                 ]);
             }
         }
-        return redirect()->route('create');
+
+
+
+        return redirect()->route('index');
     }
+
 
     function production(Request $request)
     {
@@ -100,10 +144,10 @@ class materialController extends Controller
     {
         // Retrieve all the input data
         $data = $request->all();
-        foreach($data['prodect_id'] as $prodectId){
-            $actualWeightKey = 'actual_weight_'.$prodectId; 
-            Material::where('id',$prodectId)->update([
-                "actual_weight"=>$data[$actualWeightKey],
+        foreach ($data['prodect_id'] as $prodectId) {
+            $actualWeightKey = 'actual_weight_' . $prodectId;
+            Material::where('id', $prodectId)->update([
+                "actual_weight" => $data[$actualWeightKey],
             ]);
         }
 
@@ -122,6 +166,7 @@ class materialController extends Controller
         $materials = Material::all();
         return view('rep', compact('materials'));
     }
+
     function create(Request $request)
     {
         $materials = Material::all();
