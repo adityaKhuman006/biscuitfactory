@@ -78,13 +78,16 @@
 <script src="https://cdn.datatables.net/responsive/3.0.2/js/responsive.bootstrap5.js"></script>
 
 <script>
+    $(document).ready(function (){
+        $("#loader").hide();
+    })
     new DataTable('#example', {
         responsive: true
     });
     document.addEventListener('DOMContentLoaded', function() {
         const deleteButtons = document.querySelectorAll('.delete-btn');
         const deleteForm = document.getElementById('deleteForm');
-        
+
         deleteButtons.forEach(button => {
             button.addEventListener('click', function() {
                 const actionUrl = button.getAttribute('data-action');

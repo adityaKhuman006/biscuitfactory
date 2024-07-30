@@ -2,12 +2,12 @@
 @section('content') --}}
 @include('dashboard')
 <div class="main-panel">
-    <div class="content-wrapper">
+    <div class="content-wrapper p-2">
            <div class="row">
-            <div class="col-12 grid-margin">
+            <div class="col-12 p-2">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Add </h4>
+                        <h4 class="card-title">Add Product</h4>
                         <!-- Show the form to add a product if no products exist -->
                         <form method="POST" action="{{ route('product.add') }}">
                             @csrf
@@ -38,10 +38,11 @@
                                     </div>
                                 </div>
 
-                            <hr>
+                            <div class="border border-5 m-3" style="margin-left: 0 !important;"></div>
 
                             <div class="repeater">
                                 <div data-repeater-list="category-group">
+                                    <h4 class="card-title">Add items</h4>
                                     <div id="show_item">
                                         <div class="row" data-repeater-item>
                                             <div class="col-md-3  ">
@@ -106,8 +107,22 @@
         </div>
     </div>
 </div>
-</div>
-</div>
+@include('footer')
+<script src="{{ asset('assets/js/repeater.min.js') }}"></script>
+<script>
+    $('.repeater').repeater({
+        defaultValues: {
+            'text-input': 'foo'
+        },
+        show: function () {
+            $(this).slideDown();
+        },
+        hide: function (deleteElement) {
+            $(this).slideUp(deleteElement);
+        },
+        isFirstItemUndeletable: true
+    });
+</script>
 <!-- partial:partials/_footer.html -->
 </body>
 </html>

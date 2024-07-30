@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Batch;
 use App\Models\material;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -12,7 +13,7 @@ class materialController extends Controller
     function index(Request $request)
     {
         // $materials = Material::all();
-        $products = Product::all();
+        $products = Product::orderBy('id', 'desc')->get();
         return view('index', ['products' => $products]);
         // return view('index');
     }
@@ -74,63 +75,10 @@ class materialController extends Controller
 
     public function edit($id)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::where('id', $id)->first();
         $materials = Material::where('product_id', $id)->get();
         return view('product-edit', compact('product', 'materials'));
     }
-
-    public function update(Request $request)
-    {
-        $productRules = [
-            'product_name' => 'required|string|max:255',
-            'batch_size' => 'required|numeric',
-            'batch_required' => 'required|numeric',
-            'product_id' => 'nullable|exists:products,id',
-        ];
-
-        $product = Product::find($request->input('product_id'));
-
-        $product->update([
-            'product_name' => $request->input('product_name'),
-            'batch_size' => $request->input('batch_size'),
-            'batch_required' => $request->input('batch_required'),
-        ]);
-
-        // Check if 'item_name' is set and is an array
-        // if (isset($data['item_name']) && $data['item_name']) {
-        //     dd($data['item_name']);
-        //     foreach ($data['item_name'] as $key => $itemName) {
-        //         $materialId = $data['material_id'][$key] ?? null;
-
-        //         if ($materialId && Material::where('id', $materialId)->exists()) {
-        //             Material::where('id', $materialId)->update([
-        //                 "item_name" => $itemName,
-        //                 "recipie_weight" => $data['recipie_weight'][$key] ?? null,
-        //                 "umd" => $data['umd'][$key] ?? null,
-        //             ]);
-        //         }
-        //     }
-        // }
-        // dd($data['item_name']);
-
-        $data = $request->input('item_name');
-        
-        // dd($data);
-        foreach ($data as $item) {
-            if (!empty($item['item_name']) && !empty($item['recipie_weight']) && !empty($item['umd'])) {
-                Material::create([
-                    "item_name" => $item['item_name'],
-                    "recipie_weight" => $item['recipie_weight'],
-                    "umd" => $item['umd'],
-                ]);
-            }
-        }
-
-
-
-        return redirect()->route('index');
-    }
-
 
     function production(Request $request)
     {
@@ -144,10 +92,23 @@ class materialController extends Controller
     {
         // Retrieve all the input data
         $data = $request->all();
-        foreach ($data['prodect_id'] as $prodectId) {
-            $actualWeightKey = 'actual_weight_' . $prodectId;
-            Material::where('id', $prodectId)->update([
+        foreach ($data['material_id'] as $materialId) {
+            $actualWeightKey = 'actual_weight_' . $materialId;
+            Material::where('id', $materialId)->update([
                 "actual_weight" => $data[$actualWeightKey],
+            ]);
+        }
+
+        foreach ($data['material_id'] as $materialId) {
+            $actualWeightKey = 'actual_weight_' . $materialId;
+            $batchNumber =  $data['batch_number'] ?? 1;
+            Batch::create([
+                "product_id" =>$data['product_id'],
+                "material_id" => $materialId,
+                "actual_weight"=>$data[$actualWeightKey],
+                "batch_number"=>$batchNumber + 1,
+                "date"=>$data['date'],
+                "time"=>$data['time'],
             ]);
         }
 
@@ -171,5 +132,66 @@ class materialController extends Controller
     {
         $materials = Material::all();
         return view('create', compact('materials'));
+    }
+
+    public function productUpdate(Request $request)
+    {
+        $data = $request->all();
+        $productId = $data['product-id'];
+        Product::where('id', $productId)->update([
+            "product_name" => $data['product_name'],
+            "batch_size" => $data['batch_size'],
+            "batch_required" => $data['batch_required'],
+        ]);
+
+        if (isset($data['material_id']) && $data['material_id']) {
+            foreach ($data['material_id'] as $id) {
+                $itemNameKey = "old-item_name_" . $id;
+                $itemRecipieWeight_Key = "old-recipie_weight_" . $id;
+                $itemUmdKey = "old-umd_" . $id;
+                Material::where('id', $id)->update([
+                    "item_name" => $data[$itemNameKey],
+                    "recipie_weight" => $data[$itemRecipieWeight_Key],
+                    "umd" => $data[$itemUmdKey],
+                ]);
+            }
+        }
+
+        if (isset($data['category-group']) && $data['category-group']) {
+            foreach ($data['category-group'] as $item) {
+                if ($item['item_name'] && $item['recipie_weight'] && $item['umd']) {
+                    Material::create([
+                        "product_id" => $productId,
+                        "item_name" => $item['item_name'],
+                        "recipie_weight" => $item['recipie_weight'],
+                        "umd" => $item['umd'],
+                    ]);
+                }
+            }
+        }
+
+        return redirect()->route('index');
+    }
+
+    public function getProductionData(Request $request){
+        $id = $request->id;
+        $product = Product::where('id', $id)->first();
+        $materials = Material::where('product_id', $id)->get();
+
+        $batch = Batch::where('product_id', $id)
+            ->orderBy('batch_number', 'desc')
+            ->first();
+
+        $batchNumber = $batch ? (int)$batch->batch_number : 0;
+
+        if ($batchNumber == 0) {
+            $batchNumber = 1;
+        }
+
+        $html = view('production-data',compact('product','materials','batchNumber'))->render();
+
+        return response()->json([
+            "html" => $html
+        ]);
     }
 }

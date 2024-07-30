@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('material', function (Blueprint $table) {
+        Schema::create('batches', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
-
-            $table->string('item_name')->nullable();
-            $table->string('recipie_weight')->nullable();
-            $table->string('umd')->nullable();
+            $table->unsignedBigInteger('material_id');
+            $table->foreign('material_id')->references('id')->on('material')->onDelete('cascade')->onUpdate('cascade');
             $table->string('actual_weight')->nullable();
+            $table->integer('batch_number');
+            $table->string('date')->nullable();
+            $table->string('time')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('material');
+        Schema::dropIfExists('batches');
     }
 };
