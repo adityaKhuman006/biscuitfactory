@@ -23,3 +23,4 @@ Route::get('/rep', [materialController::class, 'rep'])->name('rep');
 Route::get('/view', [materialController::class, 'view'])->name('view');
 Route::post('/product-update',[materialController::class,'productUpdate'])->name('product.update');
 Route::post('get-production-data',[materialController::class,'getProductionData'])->name('get.production.data');
+Route::post('get-material',[materialController::class,'getMaterial'])->name('get.material');

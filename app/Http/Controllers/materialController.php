@@ -101,14 +101,14 @@ class materialController extends Controller
 
         foreach ($data['material_id'] as $materialId) {
             $actualWeightKey = 'actual_weight_' . $materialId;
-            $batchNumber =  $data['batch_number'] ?? 1;
+            $batchNumber = $data['batch_number'] ?? 1;
             Batch::create([
-                "product_id" =>$data['product_id'],
+                "product_id" => $data['product_id'],
                 "material_id" => $materialId,
-                "actual_weight"=>$data[$actualWeightKey],
-                "batch_number"=>$batchNumber + 1,
-                "date"=>$data['date'],
-                "time"=>$data['time'],
+                "actual_weight" => $data[$actualWeightKey],
+                "batch_number" => $batchNumber + 1,
+                "date" => $data['date'],
+                "time" => $data['time'],
             ]);
         }
 
@@ -124,8 +124,9 @@ class materialController extends Controller
 
     function rep(Request $request)
     {
-        $materials = Material::all();
-        return view('rep', compact('materials'));
+        $batches = Batch::with(['getProduct', 'getMaterial'])->groupBy('batch_number','product_id')->get();
+//        return response()->json($batches);
+        return view('rep', compact('batches'));
     }
 
     function create(Request $request)
@@ -173,7 +174,8 @@ class materialController extends Controller
         return redirect()->route('index');
     }
 
-    public function getProductionData(Request $request){
+    public function getProductionData(Request $request)
+    {
         $id = $request->id;
         $product = Product::where('id', $id)->first();
         $materials = Material::where('product_id', $id)->get();
@@ -188,8 +190,17 @@ class materialController extends Controller
             $batchNumber = 1;
         }
 
-        $html = view('production-data',compact('product','materials','batchNumber'))->render();
+        $html = view('production-data', compact('product', 'materials', 'batchNumber'))->render();
 
+        return response()->json([
+            "html" => $html
+        ]);
+    }
+
+    public function getMaterial(Request $request)
+    {
+        $materials = Batch::with(['getProduct','getMaterial'])->where('product_id', $request->productId)->where('batch_number', $request->batchId)->get();
+        $html = view('material-data', compact('materials'))->render();
         return response()->json([
             "html" => $html
         ]);

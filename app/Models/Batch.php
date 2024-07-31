@@ -18,4 +18,11 @@ class Batch extends Model
         "time",
     ];
 
+    function getProduct(){
+        return $this->hasMany(Product::class, 'id', 'product_id');
+    }
+
+    function getMaterial(){
+        return $this->hasMany(Material::class, 'id', 'material_id');
+    }
 }
