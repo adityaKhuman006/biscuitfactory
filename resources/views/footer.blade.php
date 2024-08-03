@@ -20,7 +20,7 @@
 <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
 <script src="{{ asset('assets/vendors/chart.js/chart.umd.js') }}"></script>
 <script src="{{ asset('assets/vendors/datatables.net/jquery.dataTables.js') }}"></script>
-<script src="{{ asset('a  ssets/vendors/datatables.net-bs4/dataTables.bootstrap4.js') }}"></script>
+<script src="{{ asset('assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js') }}"></script>
 <script src="{{ asset('assets/js/off-canvas.js') }}"></script>
 <script src="{{ asset('assets/js/hoverable-collapse.js') }}"></script>
 <script src="{{ asset('assets/vendors/js/maxcdn.min.js') }}"></script>

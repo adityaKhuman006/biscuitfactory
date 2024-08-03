@@ -12,10 +12,18 @@ class materialController extends Controller
 
     function index(Request $request)
     {
-        // $materials = Material::all();
+        return view('home');
+    }
+
+    public function admin(Request $request)
+    {
         $products = Product::orderBy('id', 'desc')->get();
         return view('index', ['products' => $products]);
-        // return view('index');
+    }
+
+    public function selectCategory(Request $request)
+    {
+        return view('select-category');
     }
 
     public function productAdd(Request $request)
@@ -54,7 +62,7 @@ class materialController extends Controller
             }
         }
 
-        return redirect()->route('index');
+        return redirect()->route('admin');
     }
 
     public function deleteProduct($id)
@@ -62,7 +70,7 @@ class materialController extends Controller
         $product = Product::findOrFail($id);
         $product->delete();
 
-        return redirect()->route('index');
+        return redirect()->route('admin');
     }
 
     public function ProductFatch(Request $request)
@@ -171,7 +179,7 @@ class materialController extends Controller
             }
         }
 
-        return redirect()->route('index');
+        return redirect()->route('admin');
     }
 
     public function getProductionData(Request $request)

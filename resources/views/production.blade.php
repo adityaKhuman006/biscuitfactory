@@ -25,7 +25,7 @@
                 </div>
             </div>
         </div>
-            <div id="appendedDiv">
+            <div id="appendedDiv" class="mb-5">
                 <div class="card p-2">
                     <span class="text-center">Please select product</span>
                 </div>

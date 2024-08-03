@@ -4,8 +4,10 @@ use App\Http\Controllers\materialController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::any('/', [materialController::class, 'index'])->name('index');
+Route::get('/', [materialController::class, 'index'])->name('index');
+Route::get('select-category', [materialController::class, 'selectCategory'])->name('select.category');
 
+Route::get('admin', [materialController::class, 'admin'])->name('admin');
 // Route::post('/create', [materialController::class, 'create'])->name('create');
 
 Route::post('/product-add', [materialController::class, 'productAdd'])->name('product.add');

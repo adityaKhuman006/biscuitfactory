@@ -25879,4 +25879,9 @@ dl li {
 .right-sidebar-toggler-wrapper .sidebar-toggler:last-child {
   border-bottom: none;
 }
+@media only screen and (max-width: 500px) {
+    .content-wrapper{
+        padding: 0 !important;
+    }
+}
 /*# sourceMappingURL=maps/style.css.map */
