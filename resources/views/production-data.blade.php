@@ -56,7 +56,7 @@
                                         <input type="hidden" name="material_id[]"
                                                value="{{ $item->id }}" id="">
                                         <input type="number" style="width: 100px;" required
-                                               name="actual_weight_{{ $item->id }}"
+                                               name="actual_weight_{{ $item->id }}" value="{{ $item->recipie_weight }}"
                                                class="form-control form-control-sm border-primary" placeholder="Weight">
                                         <!-- Add more fields if needed, ensure names are indexed for array input -->
                                     </td>

@@ -46,7 +46,7 @@
                             <h4 class="card-title">Update items</h4>
                             @foreach($materials as $material)
                                 <input type="hidden" name="material_id[]" value="{{ $material->id }}">
-                                <div class="row">
+                                <div class="row" style="border-bottom: 2px solid #0000003b; margin: 10px 10px 10px 0px; border-radius: 10px">
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <div class="form-group">
@@ -70,10 +70,10 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <div class="form-group">
-                                                <label>UDM</label>
+                                                <label>UOM</label>
                                                 <input type="text" name="old-umd_{{ $material->id }}" value="{{ $material->umd ?? '' }}"
                                                        class="form-control form-control-sm border-black"
-                                                       placeholder="UDM">
+                                                       placeholder="UOM">
                                             </div>
                                         </div>
                                     </div>
@@ -82,7 +82,7 @@
                             <div class="repeater">
                                 <div data-repeater-list="category-group">
                                     <div id="show_item">
-                                        <div class="row" data-repeater-item>
+                                        <div class="row" data-repeater-item style="border-bottom: 2px solid #0000003b; margin: 10px 10px 10px 0px; border-radius: 10px">
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <div class="form-group">
@@ -106,10 +106,10 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <div class="form-group">
-                                                        <label>UDM</label>
+                                                        <label>UOM</label>
                                                         <input type="text" name="umd"
                                                                class="form-control form-control-sm border-black"
-                                                               placeholder="UDM">
+                                                               placeholder="UOM">
                                                     </div>
                                                 </div>
                                             </div>

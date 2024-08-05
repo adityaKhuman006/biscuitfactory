@@ -20,7 +20,7 @@
                     @foreach($batches as $batch)
                         <tr>
                             <th class="text-start">{{ $batch->getProduct[0]->product_name}}</th>
-                            <td class="text-start">{{ $batch->batch_number}}</td>
+                            <td class="text-start">{{ $batch->batch_number - 1 }}</td>
                             <td>Production</td>
                             <td>{{ $batch->date}}</td>
                             <td>{{ $batch->time}}</td>
