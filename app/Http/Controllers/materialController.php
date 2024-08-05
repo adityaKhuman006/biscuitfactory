@@ -132,8 +132,8 @@ class materialController extends Controller
 
     function rep(Request $request)
     {
-        $batches = Batch::with(['getProduct', 'getMaterial'])->groupBy('batch_number','product_id')->get();
-//        return response()->json($batches);
+        $batches = Batch::with(['getProduct', 'getMaterial'])->groupBy('batch_number', 'product_id')->get();
+        //        return response()->json($batches);
         return view('rep', compact('batches'));
     }
 
@@ -192,7 +192,7 @@ class materialController extends Controller
             ->orderBy('batch_number', 'desc')
             ->first();
 
-        $batchNumber = $batch ? (int)$batch->batch_number : 0;
+        $batchNumber = $batch ? (int) $batch->batch_number : 0;
 
         if ($batchNumber == 0) {
             $batchNumber = 1;
@@ -207,10 +207,63 @@ class materialController extends Controller
 
     public function getMaterial(Request $request)
     {
-        $materials = Batch::with(['getProduct','getMaterial'])->where('product_id', $request->productId)->where('batch_number', $request->batchId)->get();
+        $materials = Batch::with(['getProduct', 'getMaterial'])->where('product_id', $request->productId)->where('batch_number', $request->batchId)->get();
         $html = view('material-data', compact('materials'))->render();
         return response()->json([
             "html" => $html
         ]);
+    }
+
+    public function security()
+    {
+        return view('security');
+    }
+    public function getin()
+    {
+        return view('getin');
+    }
+
+    public function getout()
+    {
+        return view('getout');
+    }
+
+    public function rawmaterialIn()
+    {
+        return view('raw-material-in');
+    }
+
+    public function packingmaterialIn()
+    {
+        return view('packing-material-in');
+    }
+    public function machineryitemsIn()
+    {
+        return view('machinery-items-in');
+    }
+
+    public function finishedgoodIn()
+    {
+        return view('finished-good-in');
+    }
+
+    public function rawmaterialOut()
+    {
+        return view('raw-material-out');
+    }
+
+    public function packingmaterialOut()
+    {
+        return view('packing-material-out');
+    }
+
+    public function machineryitemsOut()
+    {
+        return view('machinery-items-out');
+    }
+
+    public function finishedgoodOut()
+    {
+        return view('finished-good-out');
     }
 }
