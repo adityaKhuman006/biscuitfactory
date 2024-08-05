@@ -7,17 +7,17 @@
     </div>
     <div class="mt-3">
         <a type="button" class="btn ms-3 btn-lg btn-success fw-bolder text-white"
-            href="{{ route('packingmaterial.in') }}"><img class="mr-2" src="{{ asset('assets/images/icone/mixing.png') }}"
-                alt="">Packing Material</a>
+            href="{{ route('packingmaterial.in') }}"><img class="mr-2"
+                src="{{ asset('assets/images/icone/mixing.png') }}" alt="">Packing Material</a>
     </div>
     <div class="mt-3">
         <a type="button" class="btn ms-3 btn-lg btn-success fw-bolder text-white"
-            href="{{ route('machineryitems.in') }}"><img class="mr-2" src="{{ asset('assets/images/icone/mixing.png') }}"
-                alt="">Machinery Items</a>
+            href="{{ route('machineryitems.in') }}"><img class="mr-2"
+                src="{{ asset('assets/images/icone/mixing.png') }}" alt="">Machinery Items</a>
     </div>
     <div class="mt-3">
         <a type="button" class="btn ms-3 btn-lg btn-success fw-bolder text-white"
-            href="{{ route('rawmaterial.in') }}"><img class="mr-2" src="{{ asset('assets/images/icone/mixing.png') }}"
+            href="{{ route('finishedgood-in') }}"><img class="mr-2" src="{{ asset('assets/images/icone/mixing.png') }}"
                 alt="">Finished Goods</a>
     </div>
 </div>

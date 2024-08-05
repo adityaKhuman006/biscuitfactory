@@ -1,13 +1,15 @@
 {{-- @extends('layouts.master')
 @section('content') --}}
 @include('dashboard')
+<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+
 <div class="main-panel">
-    <div class="content-wrapper p-2">
+    <div class="content-wrapper">
         <div class="row">
-            <div class="col-12 p-2">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Inward Raw Material</h4>
+            <div class="card p-2">
+                <div class="col-12">
+                    <div class="card-body pt-10 ">
+                        <h4 class="card-title">Inward Machinery Items</h4>
                         <!-- Show the form to add a product if no products exist -->
                         <form method="POST" action="">
                             @csrf
@@ -29,7 +31,7 @@
                                 </div>
                                 <div class="col-lg-3 col-6">
                                     <label>Compaey Name</label>
-                                    <select class="form-select form-control-sm border-dark" id="">
+                                    <select class="form-select form-control-sm border-dark mt-1" id="">
                                         <option>wepro</option>
                                         <option>wepro</option>
                                         <option>wepro</option>
@@ -81,77 +83,72 @@
                                 <div class="col-lg-3 col-6"></div>
                             </div>
 
-                            <div class="border border-5 m-3" style="margin-left: 0 !important;"></div>
+                            <!-- <div class="border border-5 m-3" style="margin-left: 0 !important;"></div> -->
 
                             <div class="repeater">
                                 <div data-repeater-list="category-group">
                                     <h4 class="card-title">Add items</h4>
+                                    <div>
+                                        <input type="file">
+                                    </div>
                                     <div id="show_item">
-                                        <div class="row" data-repeater-item>
+                                        <div class="row mt-3" data-repeater-item>
                                             <div class="col-md-2">
                                                 <div class="form-group">
-                                                    <div class="form-group">
-                                                        <label>Items</label>
-                                                        <select class="form-select form-control-sm border-dark"
-                                                            id="batchSizeSelect">
-                                                            <option>Meda</option>
-                                                            <option>Meda</option>
-                                                            <option>Meda</option>
-                                                            <option>Meda</option>
-                                                            <!-- Batch sizes will be populated dynamically -->
-                                                        </select>
-                                                    </div>
+                                                    <label>Items</label>
+                                                    <select class="form-select form-control-sm border-dark"
+                                                        id="batchSizeSelect">
+                                                        <option>Meda</option>
+                                                        <option>Meda</option>
+                                                        <option>Meda</option>
+                                                        <option>Meda</option>
+                                                        <!-- Batch sizes will be populated dynamically -->
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group">
-                                                    <div class="form-group">
-                                                        <label>Quantity</label>
-                                                        <input type="number" name="recipie_weight"
-                                                            class="form-control form-control-sm border-black"
-                                                            placeholder="Quantity">
-                                                    </div>
+                                                    <label>Quantity</label>
+                                                    <input type="number" name="recipie_weight"
+                                                        class="form-control form-control-sm border-black"
+                                                        placeholder="Quantity">
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group">
-                                                    <div class="form-group">
-                                                        <label>UOM</label>
-                                                        <input type="text" name="umd"
-                                                            class="form-control form-control-sm border-black"
-                                                            placeholder="UOM">
-                                                    </div>
+                                                    <label>UOM</label>
+                                                    <select class="form-select form-control-sm border-dark"
+                                                        id="batchSizeSelect">
+                                                        <option>UOM</option>
+                                                        <option>UOM</option>
+                                                        <option>UOM</option>
+                                                        <option>UOM</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group">
-                                                    <div class="form-group">
-                                                        <label>Rate</label>
-                                                        <input type="number " name="umd"
-                                                            class="form-control form-control-sm border-black"
-                                                            placeholder="Rate">
-                                                    </div>
+                                                    <label>Rate</label>
+                                                    <input type="number " name="umd"
+                                                        class="form-control form-control-sm border-black"
+                                                        placeholder="Rate">
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group">
-                                                    <div class="form-group">
-                                                        <label>Amount</label>
-                                                        <input type="nunmber" name="umd"
-                                                            class="form-control form-control-sm border-black"
-                                                            placeholder="Amount">
-                                                    </div>
+                                                    <label>Amount</label>
+                                                    <input type="nunmber" name="umd"
+                                                        class="form-control form-control-sm border-black"
+                                                        placeholder="Amount">
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group">
-                                                    <div class="form-group">
-                                                        <br>
-                                                        <div class="text-end">
-                                                            <button data-repeater-delete type="button"
-                                                                class="btn btn-danger add-item"><i
-                                                                    class=" mdi mdi-delete"></i></button>
-                                                        </div>
+                                                    <br>
+                                                    <div class="text-end mt-2">
+                                                        <button data-repeater-delete type="button"
+                                                            class="btn btn-danger add-item"><i
+                                                                class=" mdi mdi-delete"></i></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -159,9 +156,6 @@
                                     </div>
                                 </div>
                                 <div class="text-end">
-                                    <button type="button" class="btn" style="margin-top: 15px;">
-                                        <input type="file">
-                                    </button>
                                     </button>
                                     <button data-repeater-create type="button" class="btn btn-success add-item"
                                         style="margin-top: 15px;"><i class="mdi mdi-plus"></i>

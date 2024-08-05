@@ -9,7 +9,7 @@
             <div class="card p-2">
                 <div class="col-12">
                     <div class="card-body pt-10 ">
-                        <h4 class="card-title">Outward Packing Material</h4>
+                        <h4 class="card-title">Outward Raw Material</h4>
                         <!-- Show the form to add a product if no products exist -->
                         <form method="POST" action="">
                             @csrf
@@ -79,12 +79,8 @@
                                             class="form-control form-control-sm border-black" placeholder="Mobail">
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-6"></div>
-                                <div class="col-lg-3 col-6"></div>
                             </div>
-
                             <!-- <div class="border border-5 m-3" style="margin-left: 0 !important;"></div> -->
-
                             <div class="repeater">
                                 <div data-repeater-list="category-group">
                                     <h4 class="card-title">Add items</h4>
@@ -148,14 +144,36 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-2">
-                                                <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-2">
                                                     <div class="form-group">
-                                                        <br>
-                                                        <div class="text-end mt-2">
-                                                            <button data-repeater-delete type="button"
-                                                                class="btn btn-danger add-item"><i
-                                                                    class=" mdi mdi-delete"></i></button>
+                                                        <label>Reason</label>
+                                                        <select class="form-select form-control-sm border-dark"
+                                                            id="batchSizeSelect">
+                                                            <option>Returnable</option>
+                                                            <option>Non Returnable</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <div class="form-group">
+                                                            <label>Remark</label>
+                                                            <input type="text" name="umd"
+                                                                class="form-control form-control-sm border-black"
+                                                                placeholder="Remark">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <div class="form-group">
+                                                            <br>
+                                                            <div class="text-end mt-2">
+                                                                <button data-repeater-delete type="button"
+                                                                    class="btn btn-danger add-item"><i
+                                                                        class=" mdi mdi-delete"></i></button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>

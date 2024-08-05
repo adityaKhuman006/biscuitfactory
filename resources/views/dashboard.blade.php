@@ -125,10 +125,7 @@
                     </a>
                     <div class="collapse" id="ui-basic">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"><a class="nav-link" href="#">Order</a></li>
-                            <!-- <li class="nav-item"><a class="nav-link" href="{{ route('master.customer') }}">Customer</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('master.uom') }}">UOM</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('master.User') }}">User</a></li> -->
+                            <li class="nav-item"><a class="nav-link" href="{{route('product.master')}}">Product</a></li>
                         </ul>
                     </div>
                 </li>

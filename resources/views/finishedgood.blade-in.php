@@ -122,9 +122,14 @@
                                                 <div class="form-group">
                                                     <div class="form-group">
                                                         <label>UOM</label>
-                                                        <input type="text" name="umd"
-                                                            class="form-control form-control-sm border-black"
-                                                            placeholder="UOM">
+                                                        <select class="form-select form-control-sm border-dark"
+                                                            id="batchSizeSelect">
+                                                            <option>UOM</option>
+                                                            <option>UOM</option>
+                                                            <option>UOM</option>
+                                                            <option>UOM</option>
+                                                            <!-- Batch sizes will be populated dynamically -->
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>

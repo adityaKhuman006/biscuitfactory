@@ -244,7 +244,7 @@ class materialController extends Controller
 
     public function finishedgoodIn()
     {
-        return view('finished-good-in');
+        return view('finishedgood-in');
     }
 
     public function rawmaterialOut()
@@ -265,5 +265,10 @@ class materialController extends Controller
     public function finishedgoodOut()
     {
         return view('finished-good-out');
+    }
+
+    public function productMaster()
+    {
+        return view('product-master');
     }
 }
