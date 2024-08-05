@@ -188,22 +188,28 @@
       <ul class="nav">
         <li class="nav-item {{Route::currentRouteName() == 'index' ? 'active' : ''}}">
           <a class="nav-link" href="{{route('index')}}">
-            <i class="mdi mdi-home menu-icon"></i>
+            <i class="mdi mdi-view-dashboard menu-icon"></i>
             <span class="menu-title">Dashboard</span>
           </a>
         </li>
         <li class="nav-item {{Route::currentRouteName() == 'production' ? 'active' : ''}}">
           <a class="nav-link" href="{{route('production')}}">
-            <i class="mdi mdi-home menu-icon"></i>
+            <i class="mdi mdi-reproduction menu-icon"></i>
             <span class="menu-title">Production</span>
           </a>
         </li>
-        <li class="nav-item {{Route::currentRouteName() == 'rep ' ? 'active' : ''}}">
+        <li class="nav-item {{Route::currentRouteName() == 'rep' ? 'active' : ''}}">
+          <a class="nav-link" href="{{route('rep')}}">
+          <i class="mdi mdi-chart-bar menu-icon"></i>
+          <span class="menu-title">Report</span>
+          </a>
+        </li>
+        <!-- <li class="nav-item {{Route::currentRouteName() == '   ' ? 'active' : ''}}">
           <a class="nav-link" href="{{route('rep')}}">
             <i class="mdi mdi-home menu-icon"></i>
             <span class="menu-title">Report</span>
           </a>
-        </li>
+        </li> -->
         <!-- <li class="nav-item {{Route::currentRouteName() == 'rep ' ? 'active' : ''}}">
           <a class="nav-link" href="{{route('view')}}">
             <i class="mdi mdi-home menu-icon"></i>
