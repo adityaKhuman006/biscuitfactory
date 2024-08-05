@@ -7,50 +7,57 @@
             <div class="container p-2">
                 <table id="example" class="table table-striped nowrap" style="width:100%">
                     <thead>
-                        <tr>
-                            <th class="text-start">Batch No</th>
-                            <th>Status</th>
-                            <th>date</th>
-                            <th>time</th>
-                            <th>Meda</th>
-                            <th>Gud</th>
-                            <th>Gee</th>
-                        </tr>
+                    <tr>
+                        <th class="text-start">Product Name</th>
+                        <th class="text-start">Batch No</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Action</th>
+                    </tr>
                     </thead>
                     <tbody>
+                    @foreach($batches as $batch)
                         <tr>
-                            <td class="text-start">1</td>
+                            <th class="text-start">{{ $batch->getProduct[0]->product_name}}</th>
+                            <td class="text-start">{{ $batch->batch_number - 1 }}</td>
                             <td>Production</td>
-                            <td>2011-04-25</td>
-                            <td>2.22.23</td>
-                            <td>100</td>
-                            <td>50</td>
-                            <td>100</td>
+                            <td>{{ $batch->date}}</td>
+                            <td>{{ $batch->time}}</td>
+                            <td>
+                                <button data-product-id="{{$batch->getProduct[0]->id}}" data-batch-id="{{$batch->batch_number}}" class="btn btn-outline-primary fw-bolder viewReport"><i class="mdi mdi-eye"></i>
+                                </button>
+                            </td>
                         </tr>
-                        <tr>
-                            <td class="text-start">2</td>
-                            <td>LOD Reuse</td>
-                            <td>2011-04-25</td>
-                            <td>9.5.23</td>
-                            <td>100</td>
-                            <td>50</td>
-                            <td>100</td>
-                        </tr>
-                        <tr>
-                            <td class="text-start">3</td>
-                            <td>Production</td>
-                            <td>2011-04-25</td>
-                            <td>6.8.6</td>
-                            <td>100</td>
-                            <td>50</td>
-                            <td>100</td>
-                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="viewReportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Report</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="reportData">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+@include('footer')
 
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
@@ -63,6 +70,30 @@
     new DataTable('#example', {
         responsive: true
     });
+
+    $(document).on('click','.viewReport',function (){
+        $("#loader").show();
+        var batchId =  $(this).attr('data-batch-id');
+        var productId =  $(this).attr('data-product-id');
+        $.ajax({
+            url:'{{ route('get.material') }}',
+            method:'POST',
+            data:{
+                _token: '{{ csrf_token() }}',
+                productId:productId,
+                batchId:batchId
+            },
+            success : function (response){
+                if(response.html){
+                    $("#reportData").html(response.html)
+                    $("#viewReportModal").modal('show')
+                    $("#loader").hide();
+                }
+            },error : function (response){
+                console.log(response)
+            }
+        })
+    })
 </script>
 </body>
 

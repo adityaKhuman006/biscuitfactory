@@ -13,9 +13,13 @@ return new class extends Migration
     {
         Schema::create('material', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
+
             $table->string('item_name')->nullable();
             $table->string('recipie_weight')->nullable();
             $table->string('umd')->nullable();
+            $table->string('actual_weight')->nullable();
             $table->timestamps();
         });
     }
