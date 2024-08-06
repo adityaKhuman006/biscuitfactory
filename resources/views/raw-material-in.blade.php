@@ -9,7 +9,7 @@
             <div class="card p-2">
                 <div class="col-12">
                     <div class="card-body pt-10 ">
-                        <h4 class="card-title">Inward Machinery Items</h4>
+                        <h4 class="card-title">Inward Raw Material</h4>
                         <!-- Show the form to add a product if no products exist -->
                         <form method="POST" action="">
                             @csrf

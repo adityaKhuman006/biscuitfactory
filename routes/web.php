@@ -39,3 +39,5 @@ Route::get('/packing-material-out', [materialController::class, 'packingmaterial
 Route::get('/machinery-items-out', [materialController::class, 'machineryitemsOut'])->name('machineryitems.out');
 Route::get('/finished-good-out', [materialController::class, 'finishedgoodOut'])->name('finishedgood.out');
 Route::get('/product-master', [materialController::class, 'productMaster'])->name('product.master');
+Route::get('/transfer-material', [materialController::class, 'transferMaterial'])->name('transfer.material');
+Route::get('/type-master', [materialController::class, 'typeMaster'])->name('type.master');

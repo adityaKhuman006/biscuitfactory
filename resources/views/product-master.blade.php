@@ -28,6 +28,15 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-lg-4 col-6">
+                                                <label>Type</label>
+                                                <select class="form-select form-control-sm border-dark mt-1" id="">
+                                                    <option>Raw Material</option>
+                                                    <option>Packing Material</option>
+                                                    <option>Machenery parts</option>
+                                                    <option>finidhed Good</option>
+                                                </select>
+                                            </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <div class="form-group">
@@ -41,7 +50,27 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <div class="form-group">
-                                                        <br>
+                                                        <label>Packing</label>
+                                                        <input type="text" name="umd"
+                                                            class="form-control form-control-sm border-black"
+                                                            placeholder="Packing">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        <label>Remark</label>
+                                                        <input type="text" name="umd"
+                                                            class="form-control form-control-sm border-black"
+                                                            placeholder="Remark">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        <!-- <br> -->
                                                         <div class="text-end mt-2">
                                                             <button data-repeater-delete type="button"
                                                                 class="btn btn-danger add-item"><i
