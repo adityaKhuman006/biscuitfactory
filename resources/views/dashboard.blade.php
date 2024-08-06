@@ -20,7 +20,9 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.2/css/dataTables.bootstrap5.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.2/css/responsive.bootstrap5.css">
-    <!-- Option 1: Include in HTML -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <style>
         .loader-parent {
@@ -86,30 +88,30 @@
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
-                {{-- @if(Route::currentRouteName() == 'admin')--}}
+                {{-- @if (Route::currentRouteName() == 'admin') --}}
                 <li class="nav-item {{ Route::currentRouteName() == 'admin' ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('admin') }}">
                         <i class="mdi mdi-account menu-icon"></i>
                         <span class="menu-title">Dashboard</span>
                     </a>
                 </li>
-                {{-- @endif--}}
-                {{-- @if(Route::currentRouteName() == 'production' || Route::currentRouteName() == 'admin')--}}
+                {{-- @endif --}}
+                {{-- @if (Route::currentRouteName() == 'production' || Route::currentRouteName() == 'admin') --}}
                 <li class="nav-item {{ Route::currentRouteName() == 'production' ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('production') }}">
                         <i class="mdi mdi-chart-line menu-icon"></i>
                         <span class="menu-title">Production</span>
                     </a>
                 </li>
-                {{-- @endif--}}
-                {{-- @if(Route::currentRouteName() == 'rep' || Route::currentRouteName() == 'admin')--}}
+                {{-- @endif --}}
+                {{-- @if (Route::currentRouteName() == 'rep' || Route::currentRouteName() == 'admin') --}}
                 <li class="nav-item {{ Route::currentRouteName() == 'rep' ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('rep') }}">
                         <i class="mdi mdi-layers menu-icon"></i>
                         <span class="menu-title">Report</span>
                     </a>
                 </li>
-                {{-- @endif--}}
+                {{-- @endif --}}
                 <li class="nav-item {{ Route::currentRouteName() == 'security' ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('security') }}">
                         <i class="mdi mdi-layers menu-icon"></i>
@@ -126,9 +128,7 @@
                     <div class="collapse" id="ui-basic">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item"><a class="nav-link" href="#">Order</a></li>
-                            <!-- <li class="nav-item"><a class="nav-link" href="{{ route('master.customer') }}">Customer</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('master.uom') }}">UOM</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('master.User') }}">User</a></li> -->
+
                         </ul>
                     </div>
                 </li>

@@ -3,7 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\Batch;
+use App\Models\inwardRawFinishedgood;
+use App\Models\inwardRawFinishedgoodItem;
+use App\Models\inwardRawMachinery;
+use App\Models\inwardRawMachineryItem;
+use App\Models\inwardRawMaterial;
+use App\Models\inwardRawMaterialItem;
+use App\Models\inwardRawPacking;
+use App\Models\inwardRawPackingItem;
 use App\Models\material;
+use App\Models\outwardFinishedgoodMaterial;
+use App\Models\outwardFinishedgoodMaterialItem;
+use App\Models\outwardMachineryMaterial;
+use App\Models\outwardMachineryMaterialItem;
+use App\Models\outwardPackingMaterial;
+use App\Models\outwardPackingMaterialItem;
+use App\Models\outwardRawMaterial;
+use App\Models\outwardRawMaterialItem;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -49,6 +65,8 @@ class materialController extends Controller
         // // Get the items from the request
         $data = $request->all();
         $items = $data['category-group'] ?? [];
+
+
 
         foreach ($items as $item) {
 
@@ -133,7 +151,6 @@ class materialController extends Controller
     function rep(Request $request)
     {
         $batches = Batch::with(['getProduct', 'getMaterial'])->groupBy('batch_number', 'product_id')->get();
-        //        return response()->json($batches);
         return view('rep', compact('batches'));
     }
 
@@ -214,6 +231,414 @@ class materialController extends Controller
         ]);
     }
 
+
+    // raw matiriyal -------------------------------------------------------------------
+
+    public function RawMaterialIn()
+    {
+        return view('raw-material-in');
+    }
+
+    public function RawMaterialOut()
+    {
+        return view('raw-material-out');
+    }
+
+    public function RawMaterialCreate(Request $request)
+    {
+        $originalFile = '';
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
+            $destinationPath = 'public/img/';
+            $originalFile = $file->getClientOriginalName();
+            $file->move($destinationPath, $originalFile);
+        }
+
+        $inwardRawMaterial = inwardRawMaterial::create([
+            'date' => $request->date,
+            'time' => $request->time,
+            'compaey_name' => $request->compaey_name,
+            'location' => $request->location,
+            'inv_challan_number' => $request->inv_challan_number,
+            'inv_challan_date' => $request->inv_challan_date,
+            'vehicle_number' => $request->vehicle_number,
+            'mobile' => $request->mobile,
+            'img' => $originalFile,
+        ]);
+
+        $data = $request->all();
+        $items = $data['category-group'] ?? [];
+
+        foreach ($items as $itemAdd) {
+            if (
+                isset($itemAdd['item'], $itemAdd['quantity'], $itemAdd['uom'], $itemAdd['rate'], $itemAdd['amount']) &&
+                !empty($itemAdd['item']) && !empty($itemAdd['quantity']) && !empty($itemAdd['uom']) &&
+                !empty($itemAdd['rate']) && !empty($itemAdd['amount'])
+            ) {
+                inwardRawMaterialItem::create([
+                    'material_id' => $inwardRawMaterial->id,
+                    'item' => $itemAdd['item'],
+                    'quantity' => $itemAdd['quantity'],
+                    'uom' => $itemAdd['uom'],
+                    'rate' => $itemAdd['rate'],
+                    'amount' => $itemAdd['amount'],
+                ]);
+            }
+        }
+        return response()->json([]);
+    }
+
+    public function RawMaterialCreateOut(Request $request)
+    {
+        $originalFile = '';
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
+            $destinationPath = 'public/img/';
+            $originalFile = $file->getClientOriginalName();
+            $file->move($destinationPath, $originalFile);
+        }
+
+        $inwardRawMaterial = outwardRawMaterial::create([
+            'date' => $request->date,
+            'time' => $request->time,
+            'compaey_name' => $request->compaey_name,
+            'location' => $request->location,
+            'inv_challan_number' => $request->inv_challan_number,
+            'inv_challan_date' => $request->inv_challan_date,
+            'vehicle_number' => $request->vehicle_number,
+            'mobile' => $request->mobile,
+            'img' => $originalFile,
+        ]);
+
+        $data = $request->all();
+        $items = $data['category-group'] ?? [];
+
+        foreach ($items as $itemAdd) {
+            if (
+                isset($itemAdd['item'], $itemAdd['quantity'], $itemAdd['uom'], $itemAdd['rate'], $itemAdd['amount']) &&
+                !empty($itemAdd['item']) && !empty($itemAdd['quantity']) && !empty($itemAdd['uom']) &&
+                !empty($itemAdd['rate']) && !empty($itemAdd['amount'])
+            ) {
+                outwardRawMaterialItem::create([
+                    'material_out_id' => $inwardRawMaterial->id,
+                    'item' => $itemAdd['item'],
+                    'quantity' => $itemAdd['quantity'],
+                    'uom' => $itemAdd['uom'],
+                    'rate' => $itemAdd['rate'],
+                    'amount' => $itemAdd['amount'],
+                ]);
+            }
+        }
+        return response()->json([]);
+    }
+
+
+    // Packing-material-------------------------------------------------------------------
+
+    public function PackingMaterialIn()
+    {
+        return view('packing-material-in');
+    }
+
+    public function PackingMaterialOut()
+    {
+        return view('packing-material-out');
+    }
+
+    public function PackingMaterialCreate(Request $request)
+    {
+        $originalFile = '';
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
+            $destinationPath = 'public/img/';
+            $originalFile = $file->getClientOriginalName();
+            $file->move($destinationPath, $originalFile);
+        }
+
+        $inwardPackingMaterial = inwardRawPacking::create([
+            'date' => $request->date,
+            'time' => $request->time,
+            'compaey_name' => $request->compaey_name,
+            'location' => $request->location,
+            'inv_challan_number' => $request->inv_challan_number,
+            'inv_challan_date' => $request->inv_challan_date,
+            'vehicle_number' => $request->vehicle_number,
+            'mobile' => $request->mobile,
+            'img' => $originalFile,
+        ]);
+
+        $data = $request->all();
+        $items = $data['category-group'] ?? [];
+
+        foreach ($items as $itemAdd) {
+            if (
+                isset($itemAdd['item'], $itemAdd['quantity'], $itemAdd['uom'], $itemAdd['rate'], $itemAdd['amount']) &&
+                !empty($itemAdd['item']) && !empty($itemAdd['quantity']) && !empty($itemAdd['uom']) &&
+                !empty($itemAdd['rate']) && !empty($itemAdd['amount'])
+            ) {
+                inwardRawPackingItem::create([
+                    'packing_id' => $inwardPackingMaterial->id,
+                    'item' => $itemAdd['item'],
+                    'quantity' => $itemAdd['quantity'],
+                    'uom' => $itemAdd['uom'],
+                    'rate' => $itemAdd['rate'],
+                    'amount' => $itemAdd['amount'],
+                ]);
+            }
+        }
+        return response()->json([]);
+    }
+
+
+    public function PackingMaterialCreateOut(Request $request)
+    {
+        $originalFile = '';
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
+            $destinationPath = 'public/img/';
+            $originalFile = $file->getClientOriginalName();
+            $file->move($destinationPath, $originalFile);
+        }
+
+        $inwardRawMaterial = outwardPackingMaterial::create([
+            'date' => $request->date,
+            'time' => $request->time,
+            'compaey_name' => $request->compaey_name,
+            'location' => $request->location,
+            'inv_challan_number' => $request->inv_challan_number,
+            'inv_challan_date' => $request->inv_challan_date,
+            'vehicle_number' => $request->vehicle_number,
+            'mobile' => $request->mobile,
+            'img' => $originalFile,
+        ]);
+
+        $data = $request->all();
+        $items = $data['category-group'] ?? [];
+
+        foreach ($items as $itemAdd) {
+            if (
+                isset($itemAdd['item'], $itemAdd['quantity'], $itemAdd['uom'], $itemAdd['rate'], $itemAdd['amount']) &&
+                !empty($itemAdd['item']) && !empty($itemAdd['quantity']) && !empty($itemAdd['uom']) &&
+                !empty($itemAdd['rate']) && !empty($itemAdd['amount'])
+            ) {
+                outwardPackingMaterialItem::create([
+                    'Packing_out_id' => $inwardRawMaterial->id,
+                    'item' => $itemAdd['item'],
+                    'quantity' => $itemAdd['quantity'],
+                    'uom' => $itemAdd['uom'],
+                    'rate' => $itemAdd['rate'],
+                    'amount' => $itemAdd['amount'],
+                ]);
+            }
+        }
+        return response()->json([]);
+    }
+
+
+    // machinery-material--------------------------------------------------------------
+
+    public function machineryMaterialIn()
+    {
+        return view('machinery-items-in');
+    }
+
+    public function machineryMaterialOut()
+    {
+        return view('machinery-items-out');
+    }
+
+    public function machineryMaterialCreate(Request $request)
+    {
+        $originalFile = '';
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
+            $destinationPath = 'public/img/';
+            $originalFile = $file->getClientOriginalName();
+            $file->move($destinationPath, $originalFile);
+        }
+
+        $machinery = inwardRawMachinery::create([
+            'date' => $request->date,
+            'time' => $request->time,
+            'compaey_name' => $request->compaey_name,
+            'location' => $request->location,
+            'inv_challan_number' => $request->inv_challan_number,
+            'inv_challan_date' => $request->inv_challan_date,
+            'vehicle_number' => $request->vehicle_number,
+            'mobile' => $request->mobile,
+            'img' => $originalFile,
+        ]);
+
+        $data = $request->all();
+        $items = $data['category-group'] ?? [];
+
+        foreach ($items as $itemAdd) {
+            if (
+                isset($itemAdd['item'], $itemAdd['quantity'], $itemAdd['uom'], $itemAdd['rate'], $itemAdd['amount']) &&
+                !empty($itemAdd['item']) && !empty($itemAdd['quantity']) && !empty($itemAdd['uom']) &&
+                !empty($itemAdd['rate']) && !empty($itemAdd['amount'])
+            ) {
+                inwardRawMachineryItem::create([
+                    'machinery_id' => $machinery->id,
+                    'item' => $itemAdd['item'],
+                    'quantity' => $itemAdd['quantity'],
+                    'uom' => $itemAdd['uom'],
+                    'rate' => $itemAdd['rate'],
+                    'amount' => $itemAdd['amount'],
+                ]);
+            }
+        }
+        return response()->json([]);
+    }
+
+
+    public function machineryMaterialCreateOut(Request $request)
+    {
+        $originalFile = '';
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
+            $destinationPath = 'public/img/';
+            $originalFile = $file->getClientOriginalName();
+            $file->move($destinationPath, $originalFile);
+        }
+
+        $inwardRawMaterial = outwardMachineryMaterial::create([
+            'date' => $request->date,
+            'time' => $request->time,
+            'compaey_name' => $request->compaey_name,
+            'location' => $request->location,
+            'inv_challan_number' => $request->inv_challan_number,
+            'inv_challan_date' => $request->inv_challan_date,
+            'vehicle_number' => $request->vehicle_number,
+            'mobile' => $request->mobile,
+            'img' => $originalFile,
+        ]);
+
+        $data = $request->all();
+        $items = $data['category-group'] ?? [];
+
+        foreach ($items as $itemAdd) {
+            if (
+                isset($itemAdd['item'], $itemAdd['quantity'], $itemAdd['uom'], $itemAdd['rate'], $itemAdd['amount']) &&
+                !empty($itemAdd['item']) && !empty($itemAdd['quantity']) && !empty($itemAdd['uom']) &&
+                !empty($itemAdd['rate']) && !empty($itemAdd['amount'])
+            ) {
+                outwardMachineryMaterialItem::create([
+                    'machinery_out_id' => $inwardRawMaterial->id,
+                    'item' => $itemAdd['item'],
+                    'quantity' => $itemAdd['quantity'],
+                    'uom' => $itemAdd['uom'],
+                    'rate' => $itemAdd['rate'],
+                    'amount' => $itemAdd['amount'],
+                ]);
+            }
+        }
+        return response()->json([]);
+    }
+
+
+    // finishedgood-material---------------------------------------------------------------
+
+    public function finishedgoodMaterialIn()
+    {
+        return view('finished-good-in');
+    }
+
+    public function finishedgoodMaterialOut()
+    {
+        return view('finished-good-out');
+    }
+
+    public function finishedgoodMaterialCreate(Request $request)
+    {
+        $originalFile = '';
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
+            $destinationPath = 'public/img/';
+            $originalFile = $file->getClientOriginalName();
+            $file->move($destinationPath, $originalFile);
+        }
+
+        $finishedgood = inwardRawFinishedgood::create([
+            'date' => $request->date,
+            'time' => $request->time,
+            'compaey_name' => $request->compaey_name,
+            'location' => $request->location,
+            'inv_challan_number' => $request->inv_challan_number,
+            'inv_challan_date' => $request->inv_challan_date,
+            'vehicle_number' => $request->vehicle_number,
+            'mobile' => $request->mobile,
+            'img' => $originalFile,
+        ]);
+
+        $data = $request->all();
+        $items = $data['category-group'] ?? [];
+
+        foreach ($items as $itemAdd) {
+            if (
+                isset($itemAdd['item'], $itemAdd['quantity'], $itemAdd['uom'], $itemAdd['rate'], $itemAdd['amount']) &&
+                !empty($itemAdd['item']) && !empty($itemAdd['quantity']) && !empty($itemAdd['uom']) &&
+                !empty($itemAdd['rate']) && !empty($itemAdd['amount'])
+            ) {
+                inwardRawFinishedgoodItem::create([
+                    'finishedgood_id' => $finishedgood->id,
+                    'item' => $itemAdd['item'],
+                    'quantity' => $itemAdd['quantity'],
+                    'uom' => $itemAdd['uom'],
+                    'rate' => $itemAdd['rate'],
+                    'amount' => $itemAdd['amount'],
+                ]);
+            }
+        }
+        return response()->json([]);
+    }
+
+
+    public function finishedgoodMaterialCreateOut(Request $request)
+    {
+        $originalFile = '';
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
+            $destinationPath = 'public/img/';
+            $originalFile = $file->getClientOriginalName();
+            $file->move($destinationPath, $originalFile);
+        }
+
+        $inwardRawMaterial = outwardFinishedgoodMaterial::create([
+            'date' => $request->date,
+            'time' => $request->time,
+            'compaey_name' => $request->compaey_name,
+            'location' => $request->location,
+            'inv_challan_number' => $request->inv_challan_number,
+            'inv_challan_date' => $request->inv_challan_date,
+            'vehicle_number' => $request->vehicle_number,
+            'mobile' => $request->mobile,
+            'img' => $originalFile,
+        ]);
+
+        $data = $request->all();
+        $items = $data['category-group'] ?? [];
+
+        foreach ($items as $itemAdd) {
+            if (
+                isset($itemAdd['item'], $itemAdd['quantity'], $itemAdd['uom'], $itemAdd['rate'], $itemAdd['amount']) &&
+                !empty($itemAdd['item']) && !empty($itemAdd['quantity']) && !empty($itemAdd['uom']) &&
+                !empty($itemAdd['rate']) && !empty($itemAdd['amount'])
+            ) {
+                outwardFinishedgoodMaterialItem::create([
+                    'finishedgood_out_id' => $inwardRawMaterial->id,
+                    'item' => $itemAdd['item'],
+                    'quantity' => $itemAdd['quantity'],
+                    'uom' => $itemAdd['uom'],
+                    'rate' => $itemAdd['rate'],
+                    'amount' => $itemAdd['amount'],
+                ]);
+            }
+        }
+        return response()->json([]);
+    }
+
+
     public function security()
     {
         return view('security');
@@ -226,44 +651,5 @@ class materialController extends Controller
     public function getout()
     {
         return view('getout');
-    }
-
-    public function rawmaterialIn()
-    {
-        return view('raw-material-in');
-    }
-
-    public function packingmaterialIn()
-    {
-        return view('packing-material-in');
-    }
-    public function machineryitemsIn()
-    {
-        return view('machinery-items-in');
-    }
-
-    public function finishedgoodIn()
-    {
-        return view('finished-good-in');
-    }
-
-    public function rawmaterialOut()
-    {
-        return view('raw-material-out');
-    }
-
-    public function packingmaterialOut()
-    {
-        return view('packing-material-out');
-    }
-
-    public function machineryitemsOut()
-    {
-        return view('machinery-items-out');
-    }
-
-    public function finishedgoodOut()
-    {
-        return view('finished-good-out');
     }
 }
