@@ -652,4 +652,17 @@ class materialController extends Controller
     {
         return view('getout');
     }
+    public function productMaster()
+    {
+        return view('product-master');
+    }
+
+    public function transferMaterial()
+    {
+        return view('transfer-material');
+    }
+    public function typeMaster()
+    {
+        return view('type-master');
+    }
 }

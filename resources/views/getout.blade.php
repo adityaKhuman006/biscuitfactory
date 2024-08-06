@@ -1,6 +1,6 @@
 @include('dashboard')
 
-<div class="d-flex w-100 vh-100 flex-column justify-content-center align-items-center flex-wrap">
+<div class="d-flex w-100 flex-column justify-content-center align-items-center flex-wrap">
     <div>
         <a type="button" class="btn btn-lg btn-success fw-bolder text-white" href="{{ route('raw.material.out') }}"><img
                 class="mr-2" src="{{ asset('assets/images/icone/mixing.png') }}" alt="">Raw Material</a>

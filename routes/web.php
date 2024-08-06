@@ -56,3 +56,8 @@ Route::get('/finished-good-in', [materialController::class, 'finishedgoodMateria
 Route::get('/finished-good-out', [materialController::class, 'finishedgoodMaterialOut'])->name('finishedgood.material.out');
 Route::post('/finishedgood-material-create', [materialController::class, 'finishedgoodMaterialCreate'])->name('finishedgood.material.create');
 Route::post('/finishedgood-material-create-out', [materialController::class, 'finishedgoodMaterialCreateOut'])->name('finishedgood.material.create.out');
+
+
+Route::get('/product-master', [materialController::class, 'productMaster'])->name('product.master');
+Route::get('/transfer-material', [materialController::class, 'transferMaterial'])->name('transfer.material');
+Route::get('/type-master', [materialController::class, 'typeMaster'])->name('type.master');

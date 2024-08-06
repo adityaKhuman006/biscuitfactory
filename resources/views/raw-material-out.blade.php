@@ -77,8 +77,6 @@
                                             class="form-control form-control-sm border-black" placeholder="Mobail">
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-6"></div>
-                                <div class="col-lg-3 col-6"></div>
                             </div>
 
                             <div class="border border-5 m-3" style="margin-left: 0 !important;"></div>

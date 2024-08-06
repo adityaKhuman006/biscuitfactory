@@ -130,7 +130,7 @@
                                                         <label>Rate</label>
                                                         <input type="number " name="rate"
                                                             class="form-control form-control-sm border-black"
-                                                            placeholder="Rate">
+                                                            placeh  older="Rate">
                                                     </div>
                                                 </div>
                                             </div>
