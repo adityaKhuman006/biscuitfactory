@@ -280,4 +280,16 @@ class materialController extends Controller
     {
         return view('type-master');
     }
+    public function getInReport()
+    {
+        return view('get-in-report');
+    }
+    public function getOutReport()
+    {
+        return view('get-out-report');
+    }
+    public function transferReaport()
+    {
+        return view('transfer-reaport');
+    }
 }

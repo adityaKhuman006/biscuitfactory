@@ -7,29 +7,31 @@
             <div class="container p-2">
                 <table id="example" class="table table-striped nowrap" style="width:100%">
                     <thead>
-                    <tr>
-                        <th class="text-start">Product Name</th>
-                        <th class="text-start">Batch No</th>
-                        <th>Status</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Action</th>
-                    </tr>
+                        <tr>
+                            <th class="text-start">Product Name</th>
+                            <th class="text-start">Batch No</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Action</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    @foreach($batches as $batch)
-                        <tr>
-                            <th class="text-start">{{ $batch->getProduct[0]->product_name}}</th>
-                            <td class="text-start">{{ $batch->batch_number - 1 }}</td>
-                            <td>Production</td>
-                            <td>{{ $batch->date}}</td>
-                            <td>{{ $batch->time}}</td>
-                            <td>
-                                <button data-product-id="{{$batch->getProduct[0]->id}}" data-batch-id="{{$batch->batch_number}}" class="btn btn-outline-primary fw-bolder viewReport"><i class="mdi mdi-eye"></i>
-                                </button>
-                            </td>
-                        </tr>
-                    @endforeach
+                        @foreach($batches as $batch)
+                            <tr>
+                                <th class="text-start">{{ $batch->getProduct[0]->product_name}}</th>
+                                <td class="text-start">{{ $batch->batch_number - 1 }}</td>
+                                <td>Production</td>
+                                <td>{{ $batch->date}}</td>
+                                <td>{{ $batch->time}}</td>
+                                <td>
+                                    <button data-product-id="{{$batch->getProduct[0]->id}}"
+                                        data-batch-id="{{$batch->batch_number}}"
+                                        class="btn btn-outline-primary fw-bolder viewReport"><i class="mdi mdi-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -38,7 +40,7 @@
 </div>
 <!-- Modal -->
 <div class="modal fade" id="viewReportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
-     aria-hidden="true">
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -71,25 +73,25 @@
         responsive: true
     });
 
-    $(document).on('click','.viewReport',function (){
+    $(document).on('click', '.viewReport', function () {
         $("#loader").show();
-        var batchId =  $(this).attr('data-batch-id');
-        var productId =  $(this).attr('data-product-id');
+        var batchId = $(this).attr('data-batch-id');
+        var productId = $(this).attr('data-product-id');
         $.ajax({
-            url:'{{ route('get.material') }}',
-            method:'POST',
-            data:{
+            url: '{{ route('get.material') }}',
+            method: 'POST',
+            data: {
                 _token: '{{ csrf_token() }}',
-                productId:productId,
-                batchId:batchId
+                productId: productId,
+                batchId: batchId
             },
-            success : function (response){
-                if(response.html){
+            success: function (response) {
+                if (response.html) {
                     $("#reportData").html(response.html)
                     $("#viewReportModal").modal('show')
                     $("#loader").hide();
                 }
-            },error : function (response){
+            }, error: function (response) {
                 console.log(response)
             }
         })

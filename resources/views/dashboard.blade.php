@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.2/css/responsive.bootstrap5.css">
     <!-- Option 1: Include in HTML -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
     <style>
         .loader-parent {
             position: fixed;
@@ -103,17 +104,41 @@
                 </li>
                 {{-- @endif--}}
                 {{-- @if(Route::currentRouteName() == 'rep' || Route::currentRouteName() == 'admin')--}}
+                <!-- <li class="nav-item {{ Route::currentRouteName() == 'rep' ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('rep') }}">
+                        <i class="mdi mdi-layers menu-icon"></i>
+                        <span class="menu-title">Mixing Report</span>
+                    </a>
+                </li> -->
+                {{-- @endif--}}
                 <li class="nav-item {{ Route::currentRouteName() == 'rep' ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('rep') }}">
                         <i class="mdi mdi-layers menu-icon"></i>
-                        <span class="menu-title">Report</span>
+                        <span class="menu-title">Mixing Report</span>
                     </a>
                 </li>
-                {{-- @endif--}}
                 <li class="nav-item {{ Route::currentRouteName() == 'security' ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('security') }}">
                         <i class="mdi mdi-layers menu-icon"></i>
                         <span class="menu-title">Security</span>
+                    </a>
+                </li>
+                <li class="nav-item {{ Route::currentRouteName() == 'get.in.report' ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('get.in.report') }}">
+                        <i class="mdi mdi-layers menu-icon"></i>
+                        <span class="menu-title">Get Out Report</span>
+                    </a>
+                </li>
+                <li class="nav-item {{ Route::currentRouteName() == 'get.out.report' ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('get.out.report') }}">
+                        <i class="mdi mdi-layers menu-icon"></i>
+                        <span class="menu-title">Get In Report</span>
+                    </a>
+                </li>
+                <li class="nav-item {{ Route::currentRouteName() == 'transfer.reaport' ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('transfer.reaport') }}">
+                        <i class="mdi mdi-layers menu-icon"></i>
+                        <span class="menu-title">Transfer Reaport</span>
                     </a>
                 </li>
                 <li class="nav-item">

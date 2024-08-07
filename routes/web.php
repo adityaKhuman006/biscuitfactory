@@ -41,3 +41,6 @@ Route::get('/finished-good-out', [materialController::class, 'finishedgoodOut'])
 Route::get('/product-master', [materialController::class, 'productMaster'])->name('product.master');
 Route::get('/transfer-material', [materialController::class, 'transferMaterial'])->name('transfer.material');
 Route::get('/type-master', [materialController::class, 'typeMaster'])->name('type.master');
+Route::get('/get-in-report', [materialController::class, 'getInReport'])->name('get.in.report');
+Route::get('/get-out-report', [materialController::class, 'getOutReport'])->name('get.out.report');
+Route::get('/transfer-reaport', [materialController::class, 'transferReaport'])->name('transfer.reaport');
