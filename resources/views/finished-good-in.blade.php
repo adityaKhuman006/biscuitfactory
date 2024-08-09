@@ -118,20 +118,9 @@
                                                 <div class="form-group">
                                                     <div class="form-group">
                                                         <label>UOM</label>
-<<<<<<<< HEAD:resources/views/finished-good-in.blade.php
                                                         <input type="text" name="uom"
                                                             class="form-control form-control-sm border-black"
                                                             placeholder="UOM">
-========
-                                                        <select class="form-select form-control-sm border-dark"
-                                                            id="batchSizeSelect">
-                                                            <option>UOM</option>
-                                                            <option>UOM</option>
-                                                            <option>UOM</option>
-                                                            <option>UOM</option>
-                                                            <!-- Batch sizes will be populated dynamically -->
-                                                        </select>
->>>>>>>> 4493e4efc0246ea72bbb4b166b3a972879778519:resources/views/finishedgood-in.blade.php
                                                     </div>
                                                 </div>
                                             </div>
@@ -219,7 +208,7 @@
     $(document).ready(function() {
         $('#datafinishedgoodAdd').on('submit', function(event) {
             event.preventDefault();
-
+            $("#loader").show();
             var formData = new FormData(this);
             formData.append('_token', '{{ csrf_token() }}');
 
@@ -232,11 +221,13 @@
 
                 success: function(data) {
                     $('#datafinishedgoodAdd')[0].reset();
+                    $("#loader").hide();
                 },
 
                 error: function(xhr) {
                     // Handle error response
                     console.log(xhr.responseText);
+                    $("#loader").hide();
                 }
             });
         });

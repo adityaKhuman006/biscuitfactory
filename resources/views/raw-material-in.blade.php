@@ -88,9 +88,6 @@
                             <div class="repeater">
                                 <div data-repeater-list="category-group">
                                     <h4 class="card-title">Add items</h4>
-                                    <div>
-                                        <input type="file">
-                                    </div>
                                     <div id="show_item">
                                         <div class="row mt-3" data-repeater-item>
                                             <div class="col-md-2">
@@ -211,7 +208,7 @@
     $(document).ready(function() {
         $('#dataAdd').on('submit', function(event) {
             event.preventDefault();
-
+            $("#loader").show();
             var formData = new FormData(this);
             formData.append('_token', '{{ csrf_token() }}'); // Add CSRF token to FormData
 
@@ -224,11 +221,13 @@
 
                 success: function(data) {
                     $('#dataAdd')[0].reset();
+                    $("#loader").hide();
                 },
 
                 error: function(xhr) {
                     // Handle error response
                     console.log(xhr.responseText);
+                    $("#loader").hide();
                 }
             });
         });

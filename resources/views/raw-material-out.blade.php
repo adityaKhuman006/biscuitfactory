@@ -206,7 +206,7 @@
     $(document).ready(function() {
         $('#datafinishedgoodAddOut').on('submit', function(event) {
             event.preventDefault();
-
+            $("#loader").show();
             var formData = new FormData(this);
             formData.append('_token', '{{ csrf_token() }}');
 
@@ -219,11 +219,13 @@
 
                 success: function(data) {
                     $('#datafinishedgoodAddOut')[0].reset();
+                    $("#loader").hide();
                 },
 
                 error: function(xhr) {
                     // Handle error response
                     console.log(xhr.responseText);
+                    $("#loader").hide();
                 }
             });
         });
