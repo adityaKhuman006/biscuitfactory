@@ -33,7 +33,7 @@ Route::get('/getout', [materialController::class, 'getout'])->name('getout');
 
 
 
-// raw-material 
+// raw-material
 Route::get('/raw-material-in', [materialController::class, 'RawMaterialIn'])->name('raw.material.in');
 Route::get('/raw-material-out', [materialController::class, 'RawMaterialOut'])->name('raw.material.out');
 Route::post('/raw-material-create', [materialController::class, 'RawMaterialCreate'])->name('raw.material.create');
@@ -59,5 +59,24 @@ Route::post('/finishedgood-material-create-out', [materialController::class, 'fi
 
 
 Route::get('/product-master', [materialController::class, 'productMaster'])->name('product.master');
+Route::post('/product-master-create', [materialController::class, 'productMasterCreate'])->name('product.master.create');
+Route::post('update-product-name',[materialController::class,'updateproductName'])->name('update.product.name');
+Route::post('update-type',[materialController::class,'updatetype'])->name('update.type');
+Route::post('update-uom',[materialController::class,'updateuom'])->name('update.uom');
+Route::post('update-packing',[materialController::class,'updatepacking'])->name('update.packing');
+Route::post('update-remark',[materialController::class,'updateremark'])->name('update.remark');
+Route::post('delete-product',[materialController::class,'deleteProductRecord'])->name('delete.product');
+
+
+Route::get('/master-type', [materialController::class, 'masterType'])->name('master.type');
+Route::post('/master-type-create', [materialController::class, 'masterTypeCreate'])->name('master.type.create');
+Route::post('update-type-name',[materialController::class,'updatetypeName'])->name('update.type.name');
+Route::post('update-rm',[materialController::class,'updaterm'])->name('update.rm');
+Route::post('delete-rm',[materialController::class,'deletermRecord'])->name('delete.rm');
+
 Route::get('/transfer-material', [materialController::class, 'transferMaterial'])->name('transfer.material');
-Route::get('/type-master', [materialController::class, 'typeMaster'])->name('type.master');
+
+
+
+
+

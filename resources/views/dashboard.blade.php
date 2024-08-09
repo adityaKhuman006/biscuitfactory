@@ -130,7 +130,7 @@
                             <li class="nav-item"><a class="nav-link" href="{{route('product.master')}}">Product</a></li>
                         </ul>
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"><a class="nav-link" href="{{route('type.master')}}">Type</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{route('master.type')}}">Type</a></li>
                         </ul>
                     </div>
                 </li>

@@ -11,6 +11,8 @@ use App\Models\inwardRawMaterial;
 use App\Models\inwardRawMaterialItem;
 use App\Models\inwardRawPacking;
 use App\Models\inwardRawPackingItem;
+use App\Models\masterProduct;
+use App\Models\masterType;
 use App\Models\material;
 use App\Models\outwardFinishedgoodMaterial;
 use App\Models\outwardFinishedgoodMaterialItem;
@@ -638,6 +640,126 @@ class materialController extends Controller
         return response()->json([]);
     }
 
+    public function productMaster()
+    {
+        $items = masterProduct::all();
+        return view('product-master' , compact('items'));
+    }
+
+    public function updateproductName(Request $request)
+    {
+        $data = $request->all();
+        masterProduct::where('id',$data['id'])->update(['product_name'=>$data['product_name'] ?? '']);
+        return response()->json(['success'=>'true'],201);
+    }
+
+    public function updatetype(Request $request)
+    {
+        $data = $request->all();
+        masterProduct::where('id',$data['id'])->update(['type'=>$data['type'] ?? '']);
+        return response()->json(['success'=>'true'],201);
+    }
+
+    public function updateuom(Request $request)
+    {
+        $data = $request->all();
+        masterProduct::where('id',$data['id'])->update(['uom'=>$data['uom'] ?? '']);
+        return response()->json(['success'=>'true'],201);
+    }
+
+    public function updatepacking(Request $request)
+    {
+        $data = $request->all();
+        masterProduct::where('id',$data['id'])->update(['packing'=>$data['packing'] ?? '']);
+        return response()->json(['success'=>'true'],201);
+    }
+
+    public function updateremark(Request $request)
+    {
+        $data = $request->all();
+        masterProduct::where('id',$data['id'])->update(['remark'=>$data['remark'] ?? '']);
+        return response()->json(['success'=>'true'],201);
+    }
+
+    public function deleteProductRecord(Request $request)
+    {
+        $data = $request->all();
+        masterProduct::where('id',$data['id'])->delete();
+        return response()->json(['success'=>'true'],201);
+    }
+
+    public function productMasterCreate(Request $request)
+    {
+        $data = $request->all();
+        $items = $data['category-group'] ?? [];
+
+        foreach ($items as $masterProduct) {
+            if (
+                isset($masterProduct['product_name'], $masterProduct['type'], $masterProduct['uom'], $masterProduct['packing'], $masterProduct['remark']) &&
+                !empty($masterProduct['product_name']) && !empty($masterProduct['type']) && !empty($masterProduct['uom']) &&
+                !empty($masterProduct['packing']) && !empty($masterProduct['remark'])
+            ) {
+                masterProduct::create([
+                    'product_name' => $masterProduct['product_name'],
+                    'type' => $masterProduct['type'],
+                    'uom' => $masterProduct['uom'],
+                    'packing' => $masterProduct['packing'],
+                    'remark' => $masterProduct['remark'],
+                ]);
+            }
+        }
+
+        return redirect()->route('product.master');
+    }
+
+
+    public function masterType()
+    {
+        $items = masterType::all();
+        return view('master-type',compact('items'));
+    }
+
+    public function updatetypeName(Request $request)
+    {
+        $data = $request->all();
+        masterType::where('id',$data['id'])->update(['product_name'=>$data['product_name'] ?? '']);
+        return response()->json(['success'=>'true'],201);
+    }
+
+    public function updaterm(Request $request)
+    {
+        $data = $request->all();
+        masterType::where('id',$data['id'])->update(['rm'=>$data['rm'] ?? '']);
+        return response()->json(['success'=>'true'],201);
+    }
+
+    public function deletermRecord(Request $request)
+    {
+        $data = $request->all();
+        masterType::where('id',$data['id'])->delete();
+        return response()->json(['success'=>'true'],201);
+    }
+
+    public function masterTypeCreate(Request $request)
+    {
+        $data = $request->all();
+        $items = $data['category-group'] ?? [];
+
+        foreach ($items as $masterProduct) {
+            if (
+                isset($masterProduct['product_name'], $masterProduct['rm']) &&
+                !empty($masterProduct['product_name']) && !empty($masterProduct['rm'])
+            ) {
+                masterType::create([
+                    'product_name' => $masterProduct['product_name'],
+                    'rm' => $masterProduct['rm'],
+                ]);
+            }
+        }
+        return redirect()->route('master.type');
+    }
+
+
 
     public function security()
     {
@@ -652,17 +774,9 @@ class materialController extends Controller
     {
         return view('getout');
     }
-    public function productMaster()
-    {
-        return view('product-master');
-    }
 
     public function transferMaterial()
     {
         return view('transfer-material');
-    }
-    public function typeMaster()
-    {
-        return view('type-master');
     }
 }
