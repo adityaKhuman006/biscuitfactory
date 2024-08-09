@@ -88,34 +88,58 @@
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
-                {{-- @if (Route::currentRouteName() == 'admin') --}}
+                {{-- @if(Route::currentRouteName() == 'admin')--}}
                 <li class="nav-item {{ Route::currentRouteName() == 'admin' ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('admin') }}">
                         <i class="mdi mdi-account menu-icon"></i>
                         <span class="menu-title">Dashboard</span>
                     </a>
                 </li>
-                {{-- @endif --}}
-                {{-- @if (Route::currentRouteName() == 'production' || Route::currentRouteName() == 'admin') --}}
+                {{-- @endif--}}
+                {{-- @if(Route::currentRouteName() == 'production' || Route::currentRouteName() == 'admin')--}}
                 <li class="nav-item {{ Route::currentRouteName() == 'production' ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('production') }}">
                         <i class="mdi mdi-chart-line menu-icon"></i>
                         <span class="menu-title">Production</span>
                     </a>
                 </li>
-                {{-- @endif --}}
-                {{-- @if (Route::currentRouteName() == 'rep' || Route::currentRouteName() == 'admin') --}}
+                {{-- @endif--}}
+                {{-- @if(Route::currentRouteName() == 'rep' || Route::currentRouteName() == 'admin')--}}
+                <!-- <li class="nav-item {{ Route::currentRouteName() == 'rep' ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('rep') }}">
+                        <i class="mdi mdi-layers menu-icon"></i>
+                        <span class="menu-title">Mixing Report</span>
+                    </a>
+                </li> -->
+                {{-- @endif--}}
                 <li class="nav-item {{ Route::currentRouteName() == 'rep' ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('rep') }}">
                         <i class="mdi mdi-layers menu-icon"></i>
-                        <span class="menu-title">Report</span>
+                        <span class="menu-title">Mixing Report</span>
                     </a>
                 </li>
-                {{-- @endif --}}
                 <li class="nav-item {{ Route::currentRouteName() == 'security' ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('security') }}">
                         <i class="mdi mdi-layers menu-icon"></i>
                         <span class="menu-title">Security</span>
+                    </a>
+                </li>
+                <li class="nav-item {{ Route::currentRouteName() == 'get.in.report' ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('get.in.report') }}">
+                        <i class="mdi mdi-layers menu-icon"></i>
+                        <span class="menu-title">Get Out Report</span>
+                    </a>
+                </li>
+                <li class="nav-item {{ Route::currentRouteName() == 'get.out.report' ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('get.out.report') }}">
+                        <i class="mdi mdi-layers menu-icon"></i>
+                        <span class="menu-title">Get In Report</span>
+                    </a>
+                </li>
+                <li class="nav-item {{ Route::currentRouteName() == 'transfer.reaport' ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('transfer.reaport') }}">
+                        <i class="mdi mdi-layers menu-icon"></i>
+                        <span class="menu-title">Transfer Report</span>
                     </a>
                 </li>
                 <li class="nav-item">
