@@ -138,7 +138,7 @@
                 <li class="nav-item {{ Route::currentRouteName() == 'transfer.reaport' ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('transfer.reaport') }}">
                         <i class="mdi mdi-layers menu-icon"></i>
-                        <span class="menu-title">Transfer Reaport</span>
+                        <span class="menu-title">Transfer Report</span>
                     </a>
                 </li>
                 <li class="nav-item">
